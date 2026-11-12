@@ -1,0 +1,35 @@
+========================================================================================
+REPORT 4: SUSPICIOUS BATTERIES COMPREHENSIVE INVESTIGATION
+========================================================================================
+
+PART 1: EXCLUDED BATTERIES AUDIT (6 BATTERIES):
+Battery_17, 19, 20: Reference capacity set on aborted conditioning discharges (< 1.16 Ah),
+leading to unphysical SOH values reaching 162% to 244%.
+Battery_31, 32, 33: Measured discharge capacity spiked to 2.38 - 2.64 Ah, exceeding the
+physical 2.0 Ah manufacturer cell rating.
+VERDICT: Exclusion was fully justified; must remain excluded.
+
+PART 2: RETAINED BATTERIES AUDIT:
+- Battery_16: Max SOH 111.10% (Cohort 4, 43°C elevated temperature). Cell temp reaches 54°C,
+  temporarily enhancing ion diffusion. Max capacity = 1.894 Ah (<= 2.0 Ah rating). Fully explainable.
+- Battery_13, 14, 15: Similar thermal enhancements (max SOH 107.5% - 109.9%, cap <= 1.84 Ah).
+- Battery_18, 36, 37, 38: Initial cycle 1 was a conditioning discharge (SOH 44% - 63%), followed
+  by full baseline discharge at Cycle 2 (100% SOH).
+
+Battery_ID        Dataset_Status  Total_Cycles  C_ref_Ahr  Max_Capacity_Ahr  Max_SOH_%  Min_SOH_%  Mean_SOH_%
+Battery_16   Retained in Dataset            40   1.704864          1.894032 111.095773  95.949001  102.914615
+Battery_17 Excluded from Dataset           197   1.161085          1.885140 162.360246        NaN         NaN
+Battery_18   Retained in Dataset           197   1.662322          1.820306 109.503834  44.872800   83.384512
+Battery_19 Excluded from Dataset           197   1.001983          2.444062 243.922645        NaN         NaN
+Battery_20 Excluded from Dataset            47   1.102624          1.786441 162.017311        NaN         NaN
+Battery_21   Retained in Dataset            47   1.746179          1.771573 101.454231   6.817074   78.968260
+Battery_22   Retained in Dataset            47   1.707514          1.734130 101.558710  24.937561   83.060832
+Battery_23   Retained in Dataset            67   1.215649          1.215649 100.000000   3.627057   31.735799
+Battery_31 Excluded from Dataset            25   1.420906          2.378644 167.403347        NaN         NaN
+Battery_32 Excluded from Dataset            25   1.648790          2.640149 160.126501        NaN         NaN
+Battery_33 Excluded from Dataset            25   1.293180          2.330873 180.243481        NaN         NaN
+Battery_34   Retained in Dataset             4   1.418310          1.418310 100.000000  60.682040   88.155047
+Battery_35   Retained in Dataset            56   1.069142          1.154073 107.943849  91.674759   98.171973
+Battery_36   Retained in Dataset           103   1.166544          1.166544 100.000000  63.429677   81.373902
+Battery_37   Retained in Dataset           102   1.319892          1.319892 100.000000  60.535233   81.168530
+Battery_38   Retained in Dataset           102   1.344356          1.344356 100.000000  58.412978   87.551270

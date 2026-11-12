@@ -1,0 +1,33 @@
+Battery_ID,Split,Total_Cycles,C_ref_Ahr,Glitch_Cycles,Valid_SOH_Cycles,Min_SOH_%,Max_SOH_%,Mean_SOH_%,Cycles_SOH_gt_100,Cycles_SOH_gt_110,EOL_Cycle,EOL_Status,Quality_Notes
+Battery_01,Train,168,1.856487,0,168,69.348842,100.0,84.70308214285714,0,0,101.0,Observed,Clean
+Battery_02,Train,168,2.035338,0,168,56.689285,100.0,75.99970951785716,0,0,61.0,Observed,Clean
+Battery_03,Train,168,1.891052,0,168,74.056928,100.0,86.95800776785715,0,0,124.0,Observed,Clean
+Battery_04,Test,132,1.855005,0,132,72.293702,100.0,83.97288200757576,0,0,75.0,Observed,Clean
+Battery_05,Train,28,1.847011,0,28,95.710796,100.106799,98.34867374999999,3,0,,Right-Censored,SOH slightly exceeds 100% (max 100.11%)
+Battery_06,Validation,28,1.81325,0,28,76.455922,100.180745,97.94208660714284,5,0,6.0,Observed,SOH slightly exceeds 100% (max 100.18%)
+Battery_07,Train,28,1.823308,0,28,97.081395,100.0,98.98959114285715,0,0,,Right-Censored,Clean
+Battery_08,Train,28,1.804685,0,28,95.154212,100.005461,98.08134853571428,1,0,,Right-Censored,SOH slightly exceeds 100% (max 100.01%)
+Battery_09,Train,28,1.847011,0,28,95.710796,100.106799,98.34867374999999,3,0,,Right-Censored,SOH slightly exceeds 100% (max 100.11%)
+Battery_10,Train,28,1.81325,0,28,76.455922,100.180745,97.94208660714284,5,0,6.0,Observed,SOH slightly exceeds 100% (max 100.18%)
+Battery_11,Train,28,1.823308,0,28,97.081395,100.0,98.98959114285715,0,0,,Right-Censored,Clean
+Battery_12,Train,28,1.804685,0,28,95.154212,100.005461,98.08134853571428,1,0,,Right-Censored,SOH slightly exceeds 100% (max 100.01%)
+Battery_13,Train,40,1.697507,0,40,94.967473,108.671178,101.67922315000001,25,0,,Right-Censored,SOH slightly exceeds 100% (max 108.67%)
+Battery_14,Train,40,1.656071,0,40,94.366774,107.577229,100.3006058,20,0,,Right-Censored,SOH slightly exceeds 100% (max 107.58%)
+Battery_15,Validation,40,1.666675,0,40,100.0,109.970939,104.59079097499998,39,0,,Right-Censored,SOH slightly exceeds 100% (max 109.97%)
+Battery_16,Test,40,1.704864,0,40,95.949001,111.095773,102.91461484999999,28,1,,Right-Censored,SOH anomaly >110% (max 111.10%)
+Battery_18,Train,197,1.662322,0,197,44.8728,109.503834,83.38451205583758,2,0,1.0,Observed,SOH slightly exceeds 100% (max 109.50%)
+Battery_21,Validation,47,1.746179,0,47,6.817074,101.454231,78.9682595106383,24,0,1.0,Observed,SOH slightly exceeds 100% (max 101.45%)
+Battery_22,Train,47,1.707514,0,47,24.937561,101.55871,83.06083178723404,26,0,1.0,Observed,SOH slightly exceeds 100% (max 101.56%)
+Battery_23,Train,67,1.215649,0,67,3.627057,100.0,31.735798925373132,0,0,1.0,Observed,Provisional: Reference capacity at cycle 43 (cycle_index 104); early cycles SOH~4%
+Battery_24,Train,112,1.728713,1,111,3.596273,100.159539,55.20965905405405,1,0,42.0,Observed,Moved to Train: cold plunge operating condition represented in training; SOH slightly exceeds 100% (max 100.16%); 1 glitch cycle(s) set to NaN
+Battery_25,Validation,112,1.713783,1,111,3.299391,100.0,53.44644927027028,0,0,42.0,Observed,1 glitch cycle(s) set to NaN
+Battery_26,Train,112,1.686526,1,111,3.268075,100.0,52.62856394594595,0,0,42.0,Observed,1 glitch cycle(s) set to NaN
+Battery_27,Train,72,1.081979,2,70,56.096042,100.0,65.48811957142858,0,0,4.0,Observed,2 glitch cycle(s) set to NaN
+Battery_28,Train,72,1.728239,3,69,65.02058,100.0,74.21858198550726,0,0,18.0,Observed,3 glitch cycle(s) set to NaN
+Battery_29,Validation,72,1.674305,3,69,66.055917,100.0,75.00994394202898,0,0,18.0,Observed,3 glitch cycle(s) set to NaN
+Battery_30,Test,72,1.657996,3,69,69.824222,100.0,78.37882247826086,0,0,22.0,Observed,3 glitch cycle(s) set to NaN
+Battery_34,Train,4,1.41831,0,4,60.68204,100.0,88.1550475,0,0,1.0,Observed,Insufficient cycles (4 < 5) for LSTM window
+Battery_35,Train,56,1.069142,1,55,91.674759,107.943849,98.17197254545455,15,0,,Right-Censored,SOH slightly exceeds 100% (max 107.94%); 1 glitch cycle(s) set to NaN
+Battery_36,Train,103,1.166544,1,102,63.429677,100.0,81.37390158823528,0,0,1.0,Observed,1 glitch cycle(s) set to NaN
+Battery_37,Validation,102,1.319892,0,102,60.535233,100.0,81.16852964705883,0,0,1.0,Observed,Clean
+Battery_38,Test,102,1.344356,0,102,58.412978,100.0,87.55126952941177,0,0,1.0,Observed,Clean

@@ -1,0 +1,54 @@
+# ==============================================================================
+# Git Ignore Configuration for Battery SOH & RUL Machine Learning Project
+# Keeps: Notebooks, Outputs, Visualizations, Metrics, Model Weights, Reports, Code
+# Ignores: Raw .mat files (400MB), Intermediate cycle dumps (3GB), Caches, Temp
+# ==============================================================================
+
+# 1. Heavy Datasets & Intermediate Data (> 3.3 GB)
+data/raw/
+data/intermediate/
+*.mat
+
+# 2. Scratch & Temporary Files
+scratch/
+.mpl_cache/
+.tmp/
+tmp/
+temp/
+*.log
+
+# 3. Model Backups (keeps primary best_*.pth, scaler, and metric CSVs)
+models/**/backup_*/
+models/nasa_lstm/backup_previous_run/
+models/nasa_lstm/backup_previous_scaler/
+
+# 4. Python Bytecode & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# 5. Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# 6. Agent & Editor Configurations
+.agents/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 7. OS Metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+

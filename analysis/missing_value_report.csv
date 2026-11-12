@@ -1,0 +1,43 @@
+source_csv,feature_name,total_rows,missing_count,missing_percentage,nature_and_cause
+charge.csv,battery_id,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,cycle_index,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,ambient_temperature,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,cycle_start_time,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,relative_time_s,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,voltage_measured,6044602,265,0.0044,Sensor channel startup delay during cycle transitions in early cycles
+charge.csv,current_measured,6044602,265,0.0044,Sensor channel startup delay during cycle transitions in early cycles
+charge.csv,temperature_measured,6044602,265,0.0044,Sensor channel startup delay during cycle transitions in early cycles
+charge.csv,current_charge,6044602,0,0.0,No missing values; 100% complete sensor stream
+charge.csv,voltage_charge,6044602,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,battery_id,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,cycle_index,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,ambient_temperature,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,cycle_start_time,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,relative_time_s,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,voltage_measured,756343,0,0.0,Sensor channel startup delay during cycle transitions in early cycles
+discharge.csv,current_measured,756343,0,0.0,Sensor channel startup delay during cycle transitions in early cycles
+discharge.csv,temperature_measured,756343,0,0.0,Sensor channel startup delay during cycle transitions in early cycles
+discharge.csv,current_load,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,voltage_load,756343,0,0.0,No missing values; 100% complete sensor stream
+discharge.csv,capacity,756343,5396,0.7134,Scalar capacity was not computed/recorded by test equipment in non-standard discharge runs or failed cycles
+impedance.csv,battery_id,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance.csv,cycle_index,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance.csv,ambient_temperature,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance.csv,cycle_start_time,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance.csv,Re,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance.csv,Rct,1870,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,battery_id,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,cycle_index,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,point_index,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,ambient_temperature,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,cycle_start_time,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,battery_impedance_real,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,battery_impedance_imag,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,battery_current_real,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,battery_current_imag,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,sense_current_real,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,sense_current_imag,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,current_ratio_real,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,current_ratio_imag,89760,0,0.0,No missing values; 100% complete sensor stream
+impedance_spectrum.csv,rectified_impedance_real,89760,16830,18.75,Rectified impedance is calibrated for 39 of 48 frequencies; frequencies outside range are intentionally unrectified
+impedance_spectrum.csv,rectified_impedance_imag,89760,16830,18.75,Rectified impedance is calibrated for 39 of 48 frequencies; frequencies outside range are intentionally unrectified

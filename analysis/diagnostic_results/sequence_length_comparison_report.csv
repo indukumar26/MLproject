@@ -1,0 +1,4 @@
+Window_Length_W,Total_Sequences,Train_Sequences,Val_Sequences,Test_Sequences,Train_Valid_SOH,Val_Valid_SOH,Test_Valid_SOH,Train_Valid_RUL,Val_Valid_RUL,Test_Valid_RUL,Dropped_Batteries
+5,2241,1426,377,438,1418,373,434,1158,341,402,['Battery_34']
+10,2086,1326,347,413,1319,344,410,1103,316,382,['Battery_34']
+15,1931,1226,317,388,1219,314,385,1048,291,362,['Battery_34']

@@ -1,0 +1,5 @@
+Battery ID,Subset,SOH MAE (%),SOH RMSE (%),RUL MAE (cyc),RUL RMSE (cyc),Operating Condition & Status
+Battery_04 (B0018),Test,3.79% (2.51% opt),4.38% (3.02% opt),17.66 (8.74 opt),21.39 (11.05 opt),"24 °C (Room Temp), 2.0 A Constant Current"
+Battery_16 (B0032),Test,4.24%,5.18%,n/a (censored),n/a (censored),"43 °C (Elevated Temp), 4.0 A CC, Right-censored"
+Battery_30 (B0048),Test,10.24%,10.92%,10.41,11.02,"4 °C (Cold Chamber), 1.0 A Constant Current"
+Battery_38 (B0056),Test,16.25%,16.80%,13.19,13.20,"4 °C (Cold Chamber), 2.0 A Constant Current"

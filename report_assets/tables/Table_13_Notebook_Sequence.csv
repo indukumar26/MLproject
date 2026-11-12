@@ -1,0 +1,13 @@
+#,Notebook Filename,Primary Purpose & Pipeline Focus,Output Artefacts Generated
+1,01_raw_mat_to_csv_conversion.ipynb,"Flatten NASA MATLAB structures into charge, discharge & impedance tables",data/intermediate/converted_data/
+2,02_exploratory_data_analysis.ipynb,"Profile voltage, current, temperature degradation and capacity fade",outputs/02_eda/
+3,03_cycle_feature_extraction.ipynb,Extract 13–14 summary statistics per discharge cycle,data/intermediate/preprocessed_data/
+4,04_soh_and_rul_target_formulation.ipynb,"Compute physical Ah, baseline C_ref, SOH (%), and preliminary RUL",data/intermediate/processed_battery_data/
+5,05_master_dataset_construction.ipynb,Merge cycle features and initial targets across 38 cells,data/intermediate/final_dataset/
+6,06_data_quality_audit_and_target_correction.ipynb,"Audit 38 cells, correct C_ref, apply 3-cycle EOL rule, exclude 6 unphysical cells",data/final/corrected_data/
+7,07_lstm_sequence_engineering.ipynb,"Construct 5-cycle sliding windows, fit isolated scaler, split 22/6/4 cells",data/final/filtered_lstm_data/
+8,08_baseline_lstm_modeling.ipynb,Train baseline 2-layer multi-output LSTM on uncurated sequences,models/baseline_lstm/
+9,09_performance_diagnosis_and_error_attribution.ipynb,"Diagnose baseline residuals, identify capacity distortion root causes",outputs/08_diagnosis/
+10,10_optimized_multi_task_lstm_training.ipynb,Train optimized multi-task LSTM with causal masking on 32 clean cells,models/nasa_lstm/
+11,11_calce_dataset_preparation.ipynb,"Ingest CALCE CS2_21 cycles, extract cycle features, align schema",data/intermediate/calce_prepared_data/
+12,12_calce_transfer_learning.ipynb,Fine-tune input adapter on frozen LSTM backbone for CALCE transfer,models/calce_transfer/

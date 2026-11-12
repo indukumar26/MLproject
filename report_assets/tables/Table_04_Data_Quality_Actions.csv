@@ -1,0 +1,8 @@
+Check / Issue,Diagnostic Finding,Engineering Action / Remediation
+Cell-level anomalies,"Six cells: Battery_17, 19, 20, 31, 32, 33 (faulty reference, severe sensor issues, capacity > 2.4 Ah)",Completely excluded from modelling (retaining 32 clean cells)
+Conditioning cycle glitch,"Battery_36, 37, 38 had partial cycle 1 (0.78 Ah, 58% SOH) falsely triggering EOL = 1",Flagged cycle 1 as conditioning glitch; anchored reference capacity C_ref to cycle 2
+Aborted discharges,33 discharges shorter than 100 seconds,Excluded from dataset as unrepresentative truncated runs
+Zero-capacity glitches,16–17 cycles with exactly 0.0 Ah due to instrument trip,Masked out with causal target loss mask (m_SOH = 0)
+Non-monotonic counters,Segmented experimental files had counter resets,Rebuilt sequential chronological cycle counter across all segments
+Right-censoring,Cells stopped before reaching 80% EOL (e.g. Battery_16),RUL loss contribution masked (m_RUL = 0) to avoid false penalties
+Retained cohort split,32 verified cells with physical capacities <= 2.1 Ah,Partitioned strictly by battery ID into 22 Train / 6 Val / 4 Test

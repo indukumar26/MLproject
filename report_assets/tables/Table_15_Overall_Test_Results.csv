@@ -1,0 +1,4 @@
+Evaluation Target,SOH MAE (%),SOH RMSE (%),SOH R² Score,RUL MAE (cyc),RUL RMSE (cyc),RUL R² Score
+NASA Benchmark (Battery_04 / B0018),2.51% – 3.79%,3.02% – 4.38%,0.699 – 0.857,8.74 – 17.66,11.05 – 21.39,0.582 – 0.709
+NASA Overall (Pooled 4 Test Cells),8.86%,10.90%,−0.452,14.49,16.89,+0.116
+CALCE Transfer (CS2_21 Held-Out),3.83% – 4.18%,4.54% – 6.71%,+0.9416,5.02,5.18,Evaluated (Pre-EOL)

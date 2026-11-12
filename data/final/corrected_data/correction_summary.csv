@@ -1,0 +1,13 @@
+Metric,Original_Raw_Level,Existing_Final_Dataset,Corrected_Final_Dataset
+Total Batteries Represented,38,34,38
+Total Discharge Cycle Records,"825,422 (sensor rows)","2,518 (cycles)","2,881 (cycles)"
+Records with SOH > 100%,N/A,933,636
+Records with SOH <= 0%,N/A,17,0
+Invalid Zero-Capacity Glitches Marked NaN,N/A,0 (Falsely triggered EOL),55 (Safely handled)
+Batteries Reaching EOL (SOH <= 80%),N/A,18 (Distorted by zeros),25
+Right-Censored Batteries,N/A,16,13
+RUL Definition,N/A,NASA operation index delta,True sequential discharge cycles
+RUL Unit,N/A,Arbitrary operation slots,Physical battery cycles remaining
+Charge Backward Fill from Future,N/A,Yes (Cycle 1 backfilled),"NO (Strictly causal, Cycle 1 is NaN)"
+Impedance Backward Fill from Future,N/A,Yes (Initial backfilled),"NO (Strictly causal, initial is NaN)"
+New Feature: impedance_age_cycles,No,No,Yes (Tracks EIS staleness)

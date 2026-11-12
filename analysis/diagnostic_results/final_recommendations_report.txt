@@ -1,0 +1,24 @@
+========================================================================================
+REPORT 10: MASTER PRE-TRAINING DIAGNOSTIC SYNTHESIS AND ACTION PLAN
+========================================================================================
+
+1. SUITABILITY FOR SOH PREDICTION:
+ALL 32 retained batteries are 100% physically valid and suitable for SOH prediction.
+Their SOH values are clean, bounded between 3.27% and 111.10%, and free from unphysical spikes.
+
+2. SUITABILITY FOR RUL PREDICTION:
+- 14 batteries have clean, monotonically observed EOL degradation (B01-04, B06, B10, B24-26, B27-30).
+  These are fully suitable for supervised RUL regression.
+- 13 batteries are right-censored (never reach 80% EOL). Must have mask_rul = 0.0.
+- 5 batteries (B18, B21, B22, B23, B36, B37) require initial-cycle exclusion or RUL masking
+  to eliminate the naive EOL-at-cycle-1 bug.
+
+3. RECOMMENDED SEQUENCE LENGTH:
+W = 5 (1,426 Train, 377 Val, 438 Test sequences).
+
+4. EXACT STEP BEFORE RETRAINING LSTM:
+Correct the RUL target column and mask in the tensors:
+For batteries with conditioning cycle 1, either:
+  a) Exclude cycle 1 and recompute true degradation EOL, OR
+  b) Set mask_rul = 0.0 for those 8 affected batteries, ensuring the model trains RUL strictly
+     on the 14 unambiguously degraded batteries.

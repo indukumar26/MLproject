@@ -1,0 +1,20 @@
+========================================================================================
+REPORT 9: TRAIN / VALIDATION / TEST SPLIT COMPREHENSIVE ASSESSMENT
+========================================================================================
+
+1. SPLIT PROPERTIES:
+- Train: 21 batteries (1,510 cycles, 63.74%)
+- Validation: 6 batteries (401 cycles, 16.93%)
+- Test: 5 batteries (458 cycles, 19.33%)
+- Set Disjointness: Strictly verified (zero overlap between sets).
+
+2. OPERATING CONDITION STRATIFICATION:
+- Cold Plunge (22°C -> 4°C): Battery_24 in Test, Battery_26 in Train, Battery_25 in Val.
+  This completely solves the training exposure deficit for Battery_24.
+- 4°C Constant Current: Represented in Train (B27, B28, B35, B36), Val (B29, B37), Test (B30, B38).
+- 43°C Elevated Temp: Represented in Train (B13, B14), Val (B15), Test (B16).
+
+3. EVALUATION RELIABILITY & REMAINING LIMITATIONS:
+- Battery_38 in Test is right-censored in reality (final SOH = 84%), but currently labeled RUL = 0.
+  This must be masked (mask_rul = 0) so the model is evaluated accurately on SOH only for B38.
+- Battery_18 is a singleton in its extended cycling condition, correctly allocated to Train.

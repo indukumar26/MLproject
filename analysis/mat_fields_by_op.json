@@ -1,0 +1,404 @@
+{
+  "charge": {
+    "Voltage_measured": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Current_measured": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Temperature_measured": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Current_charge": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Voltage_charge": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Time": {
+      "shape_examples": [
+        [
+          1,
+          789
+        ],
+        [
+          1,
+          940
+        ],
+        [
+          1,
+          937
+        ],
+        [
+          1,
+          933
+        ],
+        [
+          1,
+          952
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    }
+  },
+  "discharge": {
+    "Voltage_measured": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Current_measured": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Temperature_measured": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Current_load": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Voltage_load": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Time": {
+      "shape_examples": [
+        [
+          1,
+          197
+        ],
+        [
+          1,
+          196
+        ],
+        [
+          1,
+          195
+        ],
+        [
+          1,
+          194
+        ],
+        [
+          1,
+          191
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": false
+    },
+    "Capacity": {
+      "shape_examples": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": true
+    }
+  },
+  "impedance": {
+    "Sense_current": {
+      "shape_examples": [
+        [
+          1,
+          48
+        ]
+      ],
+      "dtype": "complex128",
+      "is_scalar": false
+    },
+    "Battery_current": {
+      "shape_examples": [
+        [
+          1,
+          48
+        ]
+      ],
+      "dtype": "complex128",
+      "is_scalar": false
+    },
+    "Current_ratio": {
+      "shape_examples": [
+        [
+          1,
+          48
+        ]
+      ],
+      "dtype": "complex128",
+      "is_scalar": false
+    },
+    "Battery_impedance": {
+      "shape_examples": [
+        [
+          48,
+          1
+        ]
+      ],
+      "dtype": "complex128",
+      "is_scalar": false
+    },
+    "Rectified_Impedance": {
+      "shape_examples": [
+        [
+          39,
+          1
+        ]
+      ],
+      "dtype": "complex128",
+      "is_scalar": false
+    },
+    "Re": {
+      "shape_examples": [
+        [
+          1,
+          1
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": true
+    },
+    "Rct": {
+      "shape_examples": [
+        [
+          1,
+          1
+        ]
+      ],
+      "dtype": "float64",
+      "is_scalar": true
+    }
+  }
+}

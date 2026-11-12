@@ -1,0 +1,50 @@
+========================================================================================
+REPORT 1: BATTERY-WISE END-OF-LIFE (EOL) VALIDATION AND ALIGNMENT AUDIT
+========================================================================================
+
+EXECUTIVE SUMMARY:
+- Total Batteries Evaluated: 32
+- Batteries with Identical Naive and True EOL: 24
+- Batteries with EOL Mismatch due to Conditioning/Abnormal Cycle 1: 8
+
+KEY FINDING: NAIVE EOL CALCULATION FLAW (EOL-AT-CYCLE-1 BUG):
+In 8 batteries (Battery_18, 21, 22, 23, 34, 36, 37, 38), the very first recorded cycle was a
+conditioning discharge or partial-duration check cycle with SOH between 4.5% and 63.4%.
+The naive formula `min(cycle where SOH <= 80%)` triggered immediately on Cycle 1,
+marking the pristine battery as 'Dead at Cycle 1'. Consequently, RUL = max(1 - k, 0) = 0
+for ALL cycles of those batteries!
+
+DETAILED BATTERY TABLE:
+Battery_ID      Split  Cycle_1_SOH_%  Starts_Below_80%  Naive_EOL_Sequential_Cycle  True_EOL_Sequential_Cycle True_EOL_Status  EOL_Mismatch
+Battery_01      Train         100.00             False                       101.0                      101.0        Observed         False
+Battery_02      Train         100.00             False                        61.0                       61.0        Observed         False
+Battery_03      Train         100.00             False                       124.0                      124.0        Observed         False
+Battery_04       Test         100.00             False                        75.0                       75.0        Observed         False
+Battery_05      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_06 Validation         100.00             False                         6.0                        6.0        Observed         False
+Battery_07      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_08      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_09      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_10      Train         100.00             False                         6.0                        6.0        Observed         False
+Battery_11      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_12      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_13      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_14      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_15 Validation         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_16       Test         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_18      Train          44.87              True                         1.0                       88.0        Observed          True
+Battery_21 Validation           6.82              True                         1.0                       46.0        Observed          True
+Battery_22      Train          39.44              True                         1.0                       46.0        Observed          True
+Battery_23      Train           4.58              True                         1.0                       51.0        Observed          True
+Battery_24       Test         100.00             False                        42.0                       42.0        Observed         False
+Battery_25 Validation         100.00             False                        42.0                       42.0        Observed         False
+Battery_26      Train         100.00             False                        42.0                       42.0        Observed         False
+Battery_27      Train         100.00             False                         4.0                        4.0        Observed         False
+Battery_28      Train         100.00             False                        18.0                       18.0        Observed         False
+Battery_29 Validation         100.00             False                        18.0                       18.0        Observed         False
+Battery_30       Test         100.00             False                        22.0                       22.0        Observed         False
+Battery_34      Train          60.68              True                         1.0                        NaN  Right-Censored          True
+Battery_35      Train         100.00             False                         NaN                        NaN  Right-Censored         False
+Battery_36      Train          63.43              True                         1.0                       41.0        Observed          True
+Battery_37 Validation          60.54              True                         1.0                       41.0        Observed          True
+Battery_38       Test          58.41              True                         1.0                        NaN  Right-Censored          True

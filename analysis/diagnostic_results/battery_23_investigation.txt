@@ -1,0 +1,30 @@
+========================================================================================
+REPORT 5: BATTERY_23 IN-DEPTH ANOMALY & TRAJECTORY INVESTIGATION
+========================================================================================
+
+1. EXPERIMENTAL CONTEXT & ROOT CAUSE OF EARLY 4% SOH:
+- Total discharge cycles recorded in Battery_23: 67 cycles.
+- Cycles 1 to 42 (NASA cycle_index 1 to 100): The test protocol applied short micro-cycles
+  with discharge duration averaging 96 to 1060 seconds (mean current -0.25A to -1.77A).
+  The cell voltage hit the 1.9V cutoff almost immediately because of cold temperature
+  high internal impedance. Total delivered capacity was only ~0.045 to 0.056 Ah.
+- Cycle 43 (NASA cycle_index 104): The chamber protocol was updated to a full continuous discharge.
+  Discharge duration jumped to 5,608 seconds, delivering 1.2156 Ah.
+- Because 1.2156 Ah was the first cycle >= 1.0 Ah, C_ref was correctly assigned at Cycle 43.
+- Dividing early micro-cycle capacities (0.055 Ah) by C_ref (1.2156 Ah) yields exactly SOH = 4.5%!
+
+2. TRAJECTORY AFTER REFERENCE CYCLE (CYCLE 43 TO 67):
+- Cycle 43: 1.2156 Ah -> SOH = 100.00%
+- Cycle 44: 1.1476 Ah -> SOH = 94.41%
+- Cycle 45: 1.1195 Ah -> SOH = 92.09%
+- Cycle 51: 0.9610 Ah -> SOH = 79.05% (TRUE DEGRADATION EOL REACHED)
+- Cycle 67: 0.8365 Ah -> SOH = 68.81% (Terminal cycle)
+
+3. NAIVE EOL FAILURE:
+Because Cycle 1 had SOH = 4.58%, naive EOL flagged Cycle 1, and all 67 cycles got RUL = 0.0.
+
+4. SCIENTIFIC RECOMMENDATIONS FOR BATTERY_23:
+Option A (Recommended for Multi-Task): Exclude cycles 1 to 42. Keep cycles 43 to 67 as a clean
+25-cycle degradation sequence where SOH goes 100% -> 68.8%, and True EOL is at Cycle 51 (Cycle 9 of the sub-series).
+Option B: If keeping all 67 cycles, mask RUL completely (mask_rul = 0.0) for cycles 1 to 42,
+and assign true RUL = max(51 - k, 0) for k >= 43.

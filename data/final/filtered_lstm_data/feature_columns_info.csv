@@ -1,0 +1,14 @@
+Feature_Name,Category,Data_Type,Missing_Count,Min_Value,Max_Value,Mean_Value
+ambient_temperature,Discharge Health Indicator,float64,0,4.0,44.0,17.8767
+discharge_duration_s,Discharge Health Indicator,float64,0,23.0,6574.671,3399.4095
+voltage_measured_mean,Discharge Health Indicator,float64,0,2.53,4.0677,3.4382
+voltage_measured_min,Discharge Health Indicator,float64,0,1.6704,3.8384,2.3345
+voltage_measured_max,Discharge Health Indicator,float64,0,3.8387,4.4448,4.1861
+voltage_measured_std,Discharge Health Indicator,float64,0,0.1365,0.8942,0.2996
+current_measured_mean,Discharge Health Indicator,float64,0,-3.9765,-0.21,-1.6745
+current_measured_min,Discharge Health Indicator,float64,0,-4.0388,-0.9969,-2.441
+temperature_measured_mean,Discharge Health Indicator,float64,0,4.8578,55.9739,26.0597
+temperature_measured_max,Discharge Health Indicator,float64,0,6.3835,64.1438,33.1768
+temperature_measured_min,Discharge Health Indicator,float64,0,2.9048,45.3618,18.8318
+voltage_load_mean,Discharge Health Indicator,float64,0,0.0896,3.786,1.8968
+current_load_mean,Discharge Health Indicator,float64,0,-1.9788,3.9575,1.5198

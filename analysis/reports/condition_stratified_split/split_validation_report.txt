@@ -1,0 +1,57 @@
+================================================================================
+CONDITION-STRATIFIED BATTERY-WISE SPLIT VALIDATION REPORT
+================================================================================
+Generated at: 2026-11-10T22:43:13.177003
+Total Batteries: 38 | Total Discharge Cycles: 2881
+
+1. PARTITION SUMMARY & BATTERY ALLOCATIONS:
+  - Train Partition:      26 batteries (68.4%), 1975 cycles, 1871 sequences
+  - Validation Partition:  6 batteries (15.8%),  401 cycles,  377 sequences
+  - Test Partition:        6 batteries (15.8%),  505 cycles,  481 sequences
+
+2. DISJOINT PARTITION VERIFICATION (ANTI-LEAKAGE):
+  - Overlap(Train, Val):  0 batteries -> PASSED (Disjoint)
+  - Overlap(Train, Test): 0 batteries -> PASSED (Disjoint)
+  - Overlap(Val, Test):   0 batteries -> PASSED (Disjoint)
+
+3. OPERATING CONDITION STRATIFICATION AUDIT:
+Split                                Test  Train  Validation  All
+Operating_Condition_Category                                     
+Cold_Temp_4C_CC_1A                      1      2           1    4
+Cold_Temp_4C_CC_2A_Extended             1      2           1    4
+Cold_Temp_4C_CC_2A_Short                0      4           0    4
+Cold_Temp_4C_MultiRate_Single           0      1           0    1
+Elevated_Temp_43C_CC_4A                 1      2           1    4
+Normal_Temp_24C_CC_2A                   1      3           0    4
+Normal_Temp_24C_Extended_CC             0      3           0    3
+Normal_Temp_24C_Pulsed_4A               0      7           1    8
+Variable_Temp_22C_to_4C_Cold_Plunge     1      1           1    3
+Variable_Temp_24C_to_44C_MultiRate      1      1           1    3
+All                                     6     26           6   38
+
+4. SPECIAL HANDLING OF BATTERY_24 AUDIT:
+  - Battery_24 Status: Assigned to TEST set (not removed, not modified).
+  - Condition Category: Variable_Temp_22C_to_4C_Cold_Plunge (Cycle 1-41 at 22°C, Cycle 42-112 at 4°C).
+  - Training Counterpart: Battery_26 (Identical experimental 22°C -> 4°C plunge at Cycle 42, 112 cycles).
+  - Validation Counterpart: Battery_25 (Identical experimental 22°C -> 4°C plunge at Cycle 42, 112 cycles).
+  - Coverage Assessment: FULLY REPRESENTED in Training and Validation.
+
+5. TENSOR & METRIC VALIDATION:
+  [Train]
+    X Tensor Shape:      [1871, 5, 13] | NaNs: 0 | Infs: 0
+    SOH Targets:         [1871, 1] | Valid: 1869 | Range: [0.00%, 2755.02%]
+    RUL Targets:         [1871, 1] | Valid: 1024 | Range: [0.00, 435.00] cycles
+  [Validation]
+    X Tensor Shape:      [377, 5, 13] | NaNs: 0 | Infs: 0
+    SOH Targets:         [377, 1] | Valid: 377 | Range: [0.00%, 1488.24%]
+    RUL Targets:         [377, 1] | Valid: 298 | Range: [0.00, 34.00] cycles
+  [Test]
+    X Tensor Shape:      [481, 5, 13] | NaNs: 0 | Infs: 0
+    SOH Targets:         [481, 1] | Valid: 481 | Range: [0.00%, 198.92%]
+    RUL Targets:         [481, 1] | Valid: 402 | Range: [0.00, 167.00] cycles
+
+6. FEATURE SCALER ANTI-LEAKAGE AUDIT:
+  - Fitted Exclusively On: Training set (9355 observations, 1871 sequences)
+  - Features Scaled:       13 features (matching input dimension D=13)
+  - Val/Test Scaling:      Strictly transformed using fitted parameters (zero leakage)
+================================================================================

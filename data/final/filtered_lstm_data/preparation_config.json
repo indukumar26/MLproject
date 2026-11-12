@@ -1,0 +1,111 @@
+{
+  "dataset_version": "Quality-Filtered NASA PCoE Dataset (32 Batteries) - Battery_24 in Train",
+  "split_strategy": "Condition-Stratified Battery-Wise (Battery_24 in Train, 4 Test Batteries)",
+  "sequence_length": 5,
+  "number_of_features": 13,
+  "feature_names": [
+    "ambient_temperature",
+    "discharge_duration_s",
+    "voltage_measured_mean",
+    "voltage_measured_min",
+    "voltage_measured_max",
+    "voltage_measured_std",
+    "current_measured_mean",
+    "current_measured_min",
+    "temperature_measured_mean",
+    "temperature_measured_max",
+    "temperature_measured_min",
+    "voltage_load_mean",
+    "current_load_mean"
+  ],
+  "target_names": [
+    "SOH_percent",
+    "RUL_cycles"
+  ],
+  "random_seed": 42,
+  "total_batteries_retained": 32,
+  "total_batteries_excluded": 6,
+  "excluded_batteries": [
+    "Battery_17",
+    "Battery_19",
+    "Battery_20",
+    "Battery_31",
+    "Battery_32",
+    "Battery_33"
+  ],
+  "train_batteries": [
+    "Battery_01",
+    "Battery_02",
+    "Battery_03",
+    "Battery_05",
+    "Battery_07",
+    "Battery_08",
+    "Battery_09",
+    "Battery_10",
+    "Battery_11",
+    "Battery_12",
+    "Battery_13",
+    "Battery_14",
+    "Battery_18",
+    "Battery_22",
+    "Battery_23",
+    "Battery_24",
+    "Battery_26",
+    "Battery_27",
+    "Battery_28",
+    "Battery_34",
+    "Battery_35",
+    "Battery_36"
+  ],
+  "validation_batteries": [
+    "Battery_06",
+    "Battery_15",
+    "Battery_21",
+    "Battery_25",
+    "Battery_29",
+    "Battery_37"
+  ],
+  "test_batteries": [
+    "Battery_04",
+    "Battery_16",
+    "Battery_30",
+    "Battery_38"
+  ],
+  "train_battery_count": 22,
+  "validation_battery_count": 6,
+  "test_battery_count": 4,
+  "train_cycles": 1622,
+  "val_cycles": 401,
+  "test_cycles": 346,
+  "train_sequences_shape": [
+    1534,
+    5,
+    13
+  ],
+  "val_sequences_shape": [
+    377,
+    5,
+    13
+  ],
+  "test_sequences_shape": [
+    330,
+    5,
+    13
+  ],
+  "feature_scaler_path": "filtered_lstm_data/feature_scaler.pkl",
+  "provisional_batteries": [
+    "Battery_23"
+  ],
+  "provisional_battery_notes": {
+    "Battery_23": "Reference capacity selected at cycle 43 (cycle_index 104); early cycles exhibit SOH ~4%."
+  },
+  "cold_plunge_stratification": {
+    "Train_representatives": [
+      "Battery_23",
+      "Battery_24",
+      "Battery_26"
+    ],
+    "Validation_representative": "Battery_25",
+    "Test_target": "None (Battery_24 moved to Train)"
+  }
+}

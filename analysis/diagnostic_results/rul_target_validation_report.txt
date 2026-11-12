@@ -1,0 +1,30 @@
+========================================================================================
+REPORT 7: RUL TARGET GENERATION METHODOLOGY VALIDATION
+========================================================================================
+
+1. EVALUATION OF CURRENT RUL TARGETS:
+Are the current RUL targets suitable for supervised LSTM regression?
+VERDICT: NO, THEY CONTAIN A SYSTEMATIC EOL-AT-CYCLE-1 FLAW FOR 8 BATTERIES.
+
+2. DETAILED DEFECT BREAKDOWN:
+A. In the current dataset, 8 batteries (Battery_18, 21, 22, 23, 34, 36, 37, 38) were assigned
+   EOL_Cycle = 1.0 because of conditioning cycles.
+   Result: RUL is set to 0.0 for ALL their cycles!
+   Total corrupted sequences: 669 training sequences and 98 test sequences (Battery_38) have
+   ground-truth RUL = 0.0 while SOH is healthy (>90%).
+B. Battery_38 is in the Test set. The model is penalized for predicting a healthy remaining life
+   when the ground-truth label is erroneously 0.
+
+3. RECOMMENDED THREE-CATEGORY TARGET STRATEGY:
+Category 1: Clean Observed Degradation (14 batteries: B01-04, B06, B10, B24-26, B27-30)
+   - SOH starts at 100% and cleanly crosses 80% EOL at cycle k_EOL.
+   - RUL = max(k_EOL - k, 0). Retain for both SOH and RUL training.
+
+Category 2: Right-Censored Lifetimes (13 batteries: B05, B07-09, B11-16, B34, B35, B38)
+   - Never genuinely reach 80% EOL during observation.
+   - Assign mask_rul = 0.0, y_rul = -1.0. Train SOH head only. Never set RUL = 0.
+
+Category 3: Conditioning / Multi-Rate Cycles (5 batteries: B18, B21, B22, B23, B36, B37)
+   - Option 1 (Initial Cycle Exclusion): Drop cycle 1 (conditioning) so SOH baseline starts at 100%,
+     then true EOL is calculated (e.g. Battery_18 EOL = 88, Battery_36/37 EOL = 41).
+   - Option 2 (Mask RUL): Train on SOH only for these complex dynamic cohorts.

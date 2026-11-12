@@ -1,0 +1,5 @@
+Battery ID,SOH MAE (%),SOH RMSE (%),RUL MAE (cyc),RUL RMSE (cyc),Operating Condition & Censoring Status
+Battery_04,3.79% (2.51% opt),4.38% (3.02% opt),17.66 (8.74 opt),21.39 (11.05 opt),"24 °C (Room Temp), 2.0 A Constant Current"
+Battery_16,4.24%,5.18%,n/a,n/a,"43 °C (Elevated Temp), 4.0 A CC, Right-censored (no EOL)"
+Battery_30,10.24%,10.92%,10.41,11.02,"4 °C (Cold Chamber), 1.0 A Constant Current"
+Battery_38,16.25%,16.80%,13.19,13.20,"4 °C (Cold Chamber), 2.0 A Constant Current"

@@ -1,0 +1,620 @@
+
+============================================================================
+NASA LITHIUM-ION BATTERY DATASET — SOH/RUL INTEGRITY DIAGNOSTIC REPORT
+============================================================================
+Generated during post-training investigation of condition-stratified LSTM.
+All findings are read-only. No files were modified.
+
+============================================================================
+SECTION 1 — SOH CALCULATION FORMULA AND UNITS
+============================================================================
+
+------------------------------------------------------------
+1.1  Raw discharge capacity column
+------------------------------------------------------------
+  Source file   : preprocessed_data/<Battery_ID>/discharge.csv
+  Column name   : capacity
+  Unit          : Ampere-hours (Ahr)
+  Measurement   : Cumulative charge delivered during each discharge cycle.
+  One value per cycle: df.groupby("cycle_index")["capacity"].first()
+
+------------------------------------------------------------
+1.2  SOH formula (from Notebook 04)
+------------------------------------------------------------
+  reference_cap  = capacity at the FIRST recorded discharge cycle (cycle_index)
+  SOH_percent    = (capacity_at_cycle_i / reference_cap) * 100.0
+
+  This is a RELATIVE metric: SOH = 100% at the reference cycle.
+  It can EXCEED 100% if any subsequent cycle delivers more charge than the
+  reference cycle (e.g., warm-up cycles, sensor artifacts, or if reference
+  cycle was an incomplete/partial discharge).
+
+------------------------------------------------------------
+1.3  Reference capacity selection (from battery_reference_capacity_report.csv)
+------------------------------------------------------------
+  Selection rule applied in Notebook 05B:
+    - If the FIRST recorded discharge >= 1.0 Ahr  ->  use it as reference.
+    - If the first discharge < 1.0 Ahr (partial)  ->  seek the FIRST cycle
+      with capacity >= 1.0 Ahr and flag Is_Initial_Partial = True.
+
+Battery_ID  First_Cap_Ahr  Partial_Flag  C_ref_Ahr  Ref_Cycle  Max_Cap_Ahr
+Battery_01         1.8565         False     1.8565          2       1.8565
+Battery_02         2.0353         False     2.0353          2       2.0353
+Battery_03         1.8911         False     1.8911          2       1.8911
+Battery_04         1.8550         False     1.8550          3       1.8550
+Battery_05         1.8470         False     1.8470          4       1.8490
+Battery_06         1.8133         False     1.8133          4       1.8165
+Battery_07         1.8233         False     1.8233          4       1.8233
+Battery_08         1.8047         False     1.8047          4       1.8048
+Battery_09         1.8470         False     1.8470          4       1.8490
+Battery_10         1.8133         False     1.8133          4       1.8165
+Battery_11         1.8233         False     1.8233          4       1.8233
+Battery_12         1.8047         False     1.8047          4       1.8048
+Battery_13         1.6975         False     1.6975          2       1.8447
+Battery_14         1.6561         False     1.6561          2       1.7816
+Battery_15         1.6667         False     1.6667          2       1.8329
+Battery_16         1.7049         False     1.7049          2       1.8940
+Battery_17         0.0684          True     1.1611          7       1.8851
+Battery_18         0.7459          True     1.6623          5       1.8203
+Battery_19         1.0020         False     1.0020          1       2.4441
+Battery_20         0.8981          True     1.1026          5       1.7864
+Battery_21         0.1190          True     1.7462         33       1.7716
+Battery_22         0.6735          True     1.7075         33       1.7341
+Battery_23         0.0556          True     1.2156        104       1.2156
+Battery_24         1.7287         False     1.7287          3       1.7315
+Battery_25         1.7138         False     1.7138          3       1.7138
+Battery_26         1.6865         False     1.6865          3       1.6865
+Battery_27         1.0820         False     1.0820          1       1.0820
+Battery_28         1.7282         False     1.7282          1       1.7282
+Battery_29         1.6743         False     1.6743          1       1.6743
+Battery_30         1.6580         False     1.6580          1       1.6580
+Battery_31         0.8584          True     1.4209          5       2.3786
+Battery_32         0.8631          True     1.6488          5       2.6401
+Battery_33         0.6435          True     1.2932          5       2.3309
+Battery_34         0.8607          True     1.4183          5       1.4183
+Battery_35         1.0691         False     1.0691          1       1.1541
+Battery_36         0.7399          True     1.1665          5       1.1665
+Battery_37         0.7990          True     1.3199          5       1.3199
+Battery_38         0.7853          True     1.3444          5       1.3444
+
+  CRITICAL NOTE ON UNITS:
+  All capacity values are in Ahr (Ampere-hours). The NASA PCoE dataset
+  does NOT store capacity in mAh. The ~1.8 Ahr nominal capacity corresponds
+  to a 2000 mAh (2 Ah) rated cell; actual factory capacity is ~1.85 Ahr.
+  No unit-conversion error (Ahr vs mAh) was found — the issue is in the
+  REFERENCE CAPACITY SELECTION, not in the measurement units.
+
+============================================================================
+SECTION 2 — PER-BATTERY CAPACITY AND SOH STATISTICS
+============================================================================
+
+------------------------------------------------------------
+2.1  Per-battery SOH in final_battery_dataset.csv (UNCORRECTED, used for tensors)
+------------------------------------------------------------
+Battery_ID  C_ref_Ahr  Max_Cap_Ahr  SOH_min  SOH_max  SOH_mean  SOH>110  SOH=0
+Battery_01     1.8565       1.8565    69.35   100.00     84.70        0      0
+Battery_02     2.0353       2.0353    56.69   100.00     76.00        0      0
+Battery_03     1.8911       1.8911    74.06   100.00     86.96        0      0
+Battery_04     1.8550       1.8550    72.29   100.00     83.97        0      0
+Battery_05     1.8470       1.8490    95.71   100.11     98.35        0      0
+Battery_06     1.8133       1.8165    76.46   100.18     97.94        0      0
+Battery_07     1.8233       1.8233    97.08   100.00     98.99        0      0
+Battery_08     1.8047       1.8048    95.15   100.01     98.08        0      0
+Battery_09     1.8470       1.8490    95.71   100.11     98.35        0      0
+Battery_10     1.8133       1.8165    76.46   100.18     97.94        0      0
+Battery_11     1.8233       1.8233    97.08   100.00     98.99        0      0
+Battery_12     1.8047       1.8048    95.15   100.01     98.08        0      0
+Battery_13     1.6975       1.8447    94.97   108.67    101.68        0      0
+Battery_14     1.6561       1.7816    94.37   107.58    100.30        0      0
+Battery_15     1.6667       1.8329   100.00   109.97    104.59        0      0
+Battery_16     1.7049       1.8940    95.95   111.10    102.91        1      0
+Battery_17     1.1611       1.8851   100.00  2755.02   2059.91      196      0
+Battery_18     1.6623       1.8203   100.00   244.03    185.82      196      0
+Battery_19     1.0020       2.4441   100.00   243.92    169.61      196      0
+Battery_20     1.1026       1.7864   100.00   198.92    175.18       46      0
+Battery_21     1.7462       1.7716   100.00  1488.24   1158.39       46      0
+Battery_22     1.7075       1.7341    63.23   257.49    210.59       41      0
+Battery_23     1.2156       1.2156    79.27  2185.62    693.63       25      0
+Battery_24     1.7287       1.7315     0.00   100.16     54.72        0      1
+Battery_25     1.7138       1.7138     0.00   100.00     52.97        0      1
+Battery_26     1.6865       1.6865     0.00   100.00     52.16        0      1
+Battery_27     1.0820       1.0820     0.00   100.00     63.67        0      2
+Battery_28     1.7282       1.7282     0.00   100.00     71.13        0      3
+Battery_29     1.6743       1.6743     0.00   100.00     71.88        0      3
+Battery_30     1.6580       1.6580     0.00   100.00     75.11        0      3
+Battery_31     1.4209       2.3786     0.00   277.11    107.38        6      1
+Battery_32     1.6488       2.6401     0.00   305.88    109.38       11      1
+Battery_33     1.2932       2.3309     0.00   362.23    137.28       20      1
+Battery_34     1.4183       1.4183   100.00   164.79    145.27        3      0
+Battery_35     1.0691       1.1541    91.68   107.95     98.18        0      0
+Battery_36     1.1665       1.1665    63.43   100.00     81.38        0      0
+Battery_37     1.3199       1.3199    60.53   100.00     81.17        0      0
+Battery_38     1.3444       1.3444    58.41   100.00     87.55        0      0
+
+------------------------------------------------------------
+2.2  Per-battery SOH in corrected_final_battery_dataset.csv (CORRECTED, NOT used for tensors)
+------------------------------------------------------------
+Battery_ID  SOH_min  SOH_max  SOH_mean  SOH>110  SOH=0
+Battery_01    69.35   100.00     84.70        0      0
+Battery_02    56.69   100.00     76.00        0      0
+Battery_03    74.06   100.00     86.96        0      0
+Battery_04    72.29   100.00     83.97        0      0
+Battery_05    95.71   100.11     98.35        0      0
+Battery_06    76.45   100.18     97.94        0      0
+Battery_07    97.08   100.00     98.99        0      0
+Battery_08    95.15   100.00     98.08        0      0
+Battery_09    95.71   100.11     98.35        0      0
+Battery_10    76.45   100.18     97.94        0      0
+Battery_11    97.08   100.00     98.99        0      0
+Battery_12    95.15   100.00     98.08        0      0
+Battery_13    94.97   108.67    101.68        0      0
+Battery_14    94.37   107.58    100.30        0      0
+Battery_15   100.00   109.97    104.59        0      0
+Battery_16    95.95   111.09    102.91        1      0
+Battery_17     5.89   162.36    121.39      183      0
+Battery_18    44.87   109.51     83.39        0      0
+Battery_19   100.00   243.92    169.61      196      0
+Battery_20    81.45   162.02    142.68       35      0
+Battery_21     6.82   101.45     78.97        0      0
+Battery_22    24.94   101.56     83.06        0      0
+Battery_23     4.58   100.00     62.25        0      0
+Battery_24     3.60   100.16     55.21        0      0
+Battery_25     3.30   100.00     53.45        0      0
+Battery_26     3.27   100.00     52.63        0      0
+Battery_27    56.09   100.00     65.49        0      0
+Battery_28    65.02   100.00     74.22        0      0
+Battery_29    66.06   100.00     75.01        0      0
+Battery_30    69.82   100.00     78.38        0      0
+Battery_31    48.66   167.40     67.57        1      0
+Battery_32     4.64   160.13     63.18        1      0
+Battery_33    49.76   180.24     71.15        1      0
+Battery_34    60.68   100.00     88.16        0      0
+Battery_35    91.68   107.95     98.18        0      0
+Battery_36    63.43   100.00     81.38        0      0
+Battery_37    60.53   100.00     81.17        0      0
+Battery_38    58.41   100.00     87.55        0      0
+
+============================================================================
+SECTION 3 — SUSPICIOUS SOH BATTERIES: ROOT CAUSE ANALYSIS
+============================================================================
+
+  Battery: Battery_17
+  Reference capacity (C_ref): 0.0684 Ahr  (at cycle 1)
+  Max observed capacity:      1.8851 Ahr
+  Theoretical max SOH:        2755.99%  (= 1.8851/0.0684 x 100)
+  Root cause: First recorded discharge was 0.0684 Ahr (partial/warm-up). Using this as reference denominator inflates all subsequent SOH values. SOH = 1.8851/0.0684 * 100 = 2755%. Notebook 05B corrected reference to cycle 7 (1.1611 Ahr), reducing max SOH to ~162% — still above 100% because later cycles can charge-accept more than the corrected reference cycle.
+
+  Battery: Battery_19
+  Reference capacity (C_ref): 1.002 Ahr  (at cycle 1)
+  Max observed capacity:      2.4441 Ahr
+  Theoretical max SOH:        243.92%  (= 2.4441/1.002 x 100)
+  Root cause: First discharge = 1.002 Ahr (above 1.0 threshold, so NOT flagged as partial). However the full capacity is ~1.8 Ahr. Cycle 1 was likely a half-depth conditioning cycle. Max observed cap = 2.444 Ahr at cycle 279 (which is an anomalous spike). SOH = 2.444/1.002*100 = 244%.
+
+  Battery: Battery_20
+  Reference capacity (C_ref): 1.1026 Ahr  (at cycle 5)
+  Max observed capacity:      1.7864 Ahr
+  Theoretical max SOH:        162.02%  (= 1.7864/1.1026 x 100)
+  Root cause: Reference corrected to cycle 5 (1.1026 Ahr) since earlier cycles were partial. Full capacity is ~1.78 Ahr. SOH = 1.78/1.10*100 = 162%. In final_battery_dataset.csv (used for tensors), reference was cycle 1 (0.898 Ahr), giving SOH = 1.78/0.898*100 = 199%.
+
+  Battery: Battery_21
+  Reference capacity (C_ref): 1.7462 Ahr  (at cycle 33)
+  Max observed capacity:      1.7716 Ahr
+  Theoretical max SOH:        101.45%  (= 1.7716/1.7462 x 100)
+  Root cause: Reference corrected to cycle 33 (first cycle >= 1.0 Ahr = 1.7462 Ahr). Earlier cycles (1-32) had tiny partial capacities (0.119 Ahr at cycle 1). In uncorrected dataset, cycle-1 = 0.119 Ahr was the reference, giving SOH = 1.77/0.119*100 = 1488%.
+
+  Battery: Battery_22
+  Reference capacity (C_ref): 1.7075 Ahr  (at cycle 33)
+  Max observed capacity:      1.7341 Ahr
+  Theoretical max SOH:        101.56%  (= 1.7341/1.7075 x 100)
+  Root cause: Same cohort as Battery_21. Reference corrected to cycle 33. Early partial cycles give SOH >> 100% when uncorrected. Max = 257%.
+
+  Battery: Battery_23
+  Reference capacity (C_ref): 1.2156 Ahr  (at cycle 104)
+  Max observed capacity:      1.2156 Ahr
+  Theoretical max SOH:        100.0%  (= 1.2156/1.2156 x 100)
+  Root cause: Reference at cycle 104, the FIRST cycle >= 1.0 Ahr for this battery. All earlier cycles (1-103) had tiny capacities (0.0556 Ahr at cycle 1). In uncorrected file, reference = 0.0556 Ahr -> SOH = 1.22/0.0556*100 = 2186%.
+
+  Battery: Battery_31
+  Reference capacity (C_ref): 1.2932 Ahr  (at cycle 1)
+  Max observed capacity:      2.3309 Ahr
+  Theoretical max SOH:        180.24%  (= 2.3309/1.2932 x 100)
+  Root cause: Reference = cycle 1 (1.2932 Ahr). Max cap = 2.33 Ahr at cycle 11. SOH = 2.33/1.29*100 = 180%. Not partial-flagged because ref >= 1.0 Ahr, but the true nominal capacity is ~1.8 Ahr. Cycle 1 was below nominal -> SOH > 100% when capacity rises to full nominal levels.
+
+  Battery: Battery_32
+  Reference capacity (C_ref): 1.6488 Ahr  (at cycle 1)
+  Max observed capacity:      1.6488 Ahr
+  Theoretical max SOH:        100.0%  (= 1.6488/1.6488 x 100)
+  Root cause: Wildly erratic SOH (3.77% -> 305.88% -> back to ~160%) indicates intermittent zero-capacity glitches (bad discharge cycles) mixed with valid readings. The 305.88% single spike likely corresponds to a multiplied or accumulated capacity measurement artifact.
+
+  Battery: Battery_33
+  Reference capacity (C_ref): 1.2932 Ahr  (at cycle 1)
+  Max observed capacity:      2.3309 Ahr
+  Theoretical max SOH:        180.24%  (= 2.3309/1.2932 x 100)
+  Root cause: Same root cause as Battery_31: reference cycle had sub-nominal capacity (1.29 Ahr vs ~1.8 Ahr nominal), so when full capacity is delivered, SOH = 2.33/1.29*100 = 180%. Spikes up to 362% at cycle 5.
+
+  Battery: Battery_34
+  Reference capacity (C_ref): 1.4183 Ahr  (at cycle 1)
+  Max observed capacity:      1.8183 Ahr
+  Theoretical max SOH:        128.2%  (= 1.8183/1.4183 x 100)
+  Root cause: Reference = 1.4183 Ahr (below nominal). Subsequent full cycles give SOH = 1.42/1.42*100 = 100% -> 1.82/1.42*100 = 128-165%.
+
+  COMMON ROOT CAUSE ACROSS ALL SUSPICIOUS BATTERIES:
+  SOH > 100% is caused by a BELOW-NOMINAL REFERENCE CAPACITY.
+  The first discharge cycle in many NASA PCoE batteries is a conditioning
+  or partial discharge that does NOT deliver the full cell capacity.
+  Using this partial cycle as the denominator inflates all subsequent SOH%.
+
+  This is a REFERENCE SELECTION BUG, not a unit-conversion error.
+  Capacities are correctly recorded in Ahr throughout.
+
+------------------------------------------------------------
+3.1  First and last 5 cycle capacities for key suspicious batteries
+------------------------------------------------------------
+
+  Battery_17:
+    First 5 cycle capacities:
+      Cycle    1: 0.068426 Ahr
+      Cycle    5: 0.689570 Ahr
+      Cycle    7: 1.161085 Ahr
+      Cycle    9: 1.252939 Ahr
+      Cycle   11: 1.302918 Ahr
+    Last 5 cycle capacities:
+      Cycle  475: 1.328032 Ahr
+      Cycle  477: 1.363455 Ahr
+      Cycle  479: 1.329132 Ahr
+      Cycle  481: 1.312420 Ahr
+      Cycle  483: 1.315283 Ahr
+    Reference C_ref: 1.161100 Ahr
+    SOH at last cycle: 113.28%
+
+  Battery_19:
+    First 5 cycle capacities:
+      Cycle    1: 1.001983 Ahr
+      Cycle    5: 1.801101 Ahr
+      Cycle    7: 1.804423 Ahr
+      Cycle    9: 1.804389 Ahr
+      Cycle   11: 1.798925 Ahr
+    Last 5 cycle capacities:
+      Cycle  475: 1.596985 Ahr
+      Cycle  477: 1.595726 Ahr
+      Cycle  479: 1.579500 Ahr
+      Cycle  481: 1.562947 Ahr
+      Cycle  483: 1.559113 Ahr
+    Reference C_ref: 1.002000 Ahr
+    SOH at last cycle: 155.60%
+
+  Battery_20:
+    First 5 cycle capacities:
+      Cycle    1: 0.898057 Ahr
+      Cycle    5: 1.102624 Ahr
+      Cycle    7: 1.088580 Ahr
+      Cycle    9: 1.061325 Ahr
+      Cycle   11: 1.034706 Ahr
+    Last 5 cycle capacities:
+      Cycle  109: 1.730028 Ahr
+      Cycle  111: 1.729040 Ahr
+      Cycle  113: 1.728607 Ahr
+      Cycle  117: 1.525739 Ahr
+      Cycle  121: 1.530148 Ahr
+    Reference C_ref: 1.102600 Ahr
+    SOH at last cycle: 138.78%
+
+  Battery_21:
+    First 5 cycle capacities:
+      Cycle    1: 0.119038 Ahr
+      Cycle    5: 0.472986 Ahr
+      Cycle    7: 0.162808 Ahr
+      Cycle    9: 0.478763 Ahr
+      Cycle   11: 0.471138 Ahr
+    Last 5 cycle capacities:
+      Cycle  109: 1.626507 Ahr
+      Cycle  111: 1.618866 Ahr
+      Cycle  113: 1.611497 Ahr
+      Cycle  117: 1.324081 Ahr
+      Cycle  121: 1.315339 Ahr
+    Reference C_ref: 1.746200 Ahr
+    SOH at last cycle: 75.33%
+
+  Battery_23:
+    First 5 cycle capacities:
+      Cycle    1: 0.055620 Ahr
+      Cycle    4: 0.055697 Ahr
+      Cycle    6: 0.055839 Ahr
+      Cycle    8: 0.056148 Ahr
+      Cycle   10: 0.056471 Ahr
+    Last 5 cycle capacities:
+      Cycle  152: 0.868235 Ahr
+      Cycle  156: 0.844357 Ahr
+      Cycle  158: 0.865709 Ahr
+      Cycle  160: 0.848697 Ahr
+      Cycle  162: 0.836495 Ahr
+    Reference C_ref: 1.215600 Ahr
+    SOH at last cycle: 68.81%
+
+============================================================================
+SECTION 4 — TENSOR SOURCE IDENTIFICATION (CRITICAL FINDING)
+============================================================================
+  VERDICT: The train/val/test tensors were built from final_battery_dataset.csv
+           (the UNCORRECTED file), NOT from corrected_final_battery_dataset.csv.
+
+  Evidence:
+  Battery_17 SOH in final_battery_dataset.csv:            [100.00, 2755.02]%
+  Battery_17 SOH in corrected_final_battery_dataset.csv:  [5.89, 162.36]%
+  Battery_17 SOH_Target in train_sequences_metadata.csv:  [296.03, 2755.02]%
+
+  The train metadata matches the UNCORRECTED file exactly.
+  Notebook 06 reads: corrected_data/corrected_final_battery_dataset.csv
+  BUT the STRATIFIED SPLIT tensors (lstm_prepared_data/train_tensors.pt) contain
+  SOH values from the uncorrected file.
+
+  Explanation: The condition-stratified split script was written and executed
+  SEPARATELY from Notebook 06. That script loaded data from final_battery_dataset.csv
+  (the top-level file) instead of the corrected version in corrected_data/.
+
+  Verification:
+    train_meta Battery_17 SOH max  = 2755.0168%
+    corrected file Battery_17 max  = 162.3581%  (does NOT match)
+    original file Battery_17 max   = 2755.0168%  (MATCHES)
+
+============================================================================
+SECTION 5 — TRAIN / VALIDATION / TEST TARGET COMPARISON
+============================================================================
+
+------------------------------------------------------------
+5.1  Tensor SOH statistics
+------------------------------------------------------------
+  Train:  N=1871  masked=2  valid=1869  SOH_min=0.00%  SOH_max=2755.02%  SOH_mean=333.50%  SOH>110=670  SOH=0=9
+  Val:  N=377  masked=0  valid=377  SOH_min=0.00%  SOH_max=1488.24%  SOH_mean=206.30%  SOH>110=43  SOH=0=4
+  Test:  N=481  masked=0  valid=481  SOH_min=0.00%  SOH_max=198.92%  SOH_mean=86.25%  SOH>110=43  SOH=0=4
+
+------------------------------------------------------------
+5.2  Tensor RUL statistics
+------------------------------------------------------------
+  Train:  valid=1024  masked=847  RUL_min=0  RUL_max=435  RUL_mean=52.77  RUL=0 count=672
+  Val:  valid=298  masked=79  RUL_min=0  RUL_max=34  RUL_mean=0.79  RUL=0 count=283
+  Test:  valid=402  masked=79  RUL_min=0  RUL_max=167  RUL_mean=15.52  RUL=0 count=316
+
+------------------------------------------------------------
+5.3  Metadata vs tensor consistency check
+------------------------------------------------------------
+  Train SOH: metadata count=1869, tensor count=1869 -> MINOR FLOAT DIFF (1.22e-04)
+  Val SOH: metadata count=377, tensor count=377 -> MATCH (diff < 1e-4)
+  Test SOH: metadata count=481, tensor count=481 -> MATCH (diff < 1e-4)
+
+============================================================================
+SECTION 6 — RUL LABEL AND MASKING VERIFICATION
+============================================================================
+
+------------------------------------------------------------
+6.1  EOL definition
+------------------------------------------------------------
+  EOL_threshold = 80% SOH
+  EOL_cycle = first discharge cycle where SOH_percent <= 80.0
+  RUL at cycle i = max(EOL_cycle - i, 0)   (clipped at zero)
+  RUL = NaN (masked) for right-censored batteries (never observed EOL)
+
+------------------------------------------------------------
+6.2  EOL status per battery
+------------------------------------------------------------
+Battery_ID                    EOL_Status  EOL_Sequential_Cycle
+Battery_01                      Observed                 101.0
+Battery_02                      Observed                  61.0
+Battery_03                      Observed                 124.0
+Battery_04                      Observed                  75.0
+Battery_05 Not Observed (Right-Censored)                   NaN
+Battery_06                      Observed                   6.0
+Battery_07 Not Observed (Right-Censored)                   NaN
+Battery_08 Not Observed (Right-Censored)                   NaN
+Battery_09 Not Observed (Right-Censored)                   NaN
+Battery_10                      Observed                   6.0
+Battery_11 Not Observed (Right-Censored)                   NaN
+Battery_12 Not Observed (Right-Censored)                   NaN
+Battery_13 Not Observed (Right-Censored)                   NaN
+Battery_14 Not Observed (Right-Censored)                   NaN
+Battery_15 Not Observed (Right-Censored)                   NaN
+Battery_16 Not Observed (Right-Censored)                   NaN
+Battery_17                      Observed                   1.0
+Battery_18                      Observed                   1.0
+Battery_19 Not Observed (Right-Censored)                   NaN
+Battery_20 Not Observed (Right-Censored)                   NaN
+Battery_21                      Observed                   1.0
+Battery_22                      Observed                   1.0
+Battery_23                      Observed                   1.0
+Battery_24                      Observed                  42.0
+Battery_25                      Observed                  42.0
+Battery_26                      Observed                  42.0
+Battery_27                      Observed                   4.0
+Battery_28                      Observed                  18.0
+Battery_29                      Observed                  18.0
+Battery_30                      Observed                  22.0
+Battery_31                      Observed                   1.0
+Battery_32                      Observed                   1.0
+Battery_33                      Observed                   1.0
+Battery_34                      Observed                   1.0
+Battery_35 Not Observed (Right-Censored)                   NaN
+Battery_36                      Observed                   1.0
+Battery_37                      Observed                   1.0
+Battery_38                      Observed                   1.0
+
+------------------------------------------------------------
+6.3  RUL mask correctness in tensors
+------------------------------------------------------------
+  Train: mask_rul agrees with metadata Has_RUL in 1871/1871 rows (PERFECT)
+  Val: mask_rul agrees with metadata Has_RUL in 377/377 rows (PERFECT)
+  Test: mask_rul agrees with metadata Has_RUL in 481/481 rows (PERFECT)
+
+------------------------------------------------------------
+6.4  Right-censored batteries — RUL label check
+------------------------------------------------------------
+  Right-censored batteries have RUL = NaN in metadata (mask_rul = 0).
+  Verified: no right-censored battery has RUL = 0 incorrectly.
+  Right-censored batteries: ['Battery_05', 'Battery_07', 'Battery_08', 'Battery_09', 'Battery_11', 'Battery_12', 'Battery_13', 'Battery_14', 'Battery_15', 'Battery_16', 'Battery_19', 'Battery_20', 'Battery_35']
+  Train: OK — no right-censored batteries have Has_RUL=True.
+  Val: OK — no right-censored batteries have Has_RUL=True.
+  Test: OK — no right-censored batteries have Has_RUL=True.
+
+------------------------------------------------------------
+6.5  Zero-RUL floor effect
+------------------------------------------------------------
+  Train: 672/1024 valid RUL targets = 0  (65.6%)
+  Val: 283/298 valid RUL targets = 0  (95.0%)
+  Test: 316/402 valid RUL targets = 0  (78.6%)
+
+============================================================================
+SECTION 7 — COLD-BATTERY INVESTIGATION (Battery_30 and Battery_38)
+============================================================================
+
+------------------------------------------------------------
+7.1  Battery_30 — near-zero SOH predictions (actual SOH = [0, 88.2]%)
+------------------------------------------------------------
+
+  Battery_30 in final_battery_dataset.csv:
+    Cycles: 72
+    SOH range: [0.00, 100.00]%
+    SOH = 0.0 count: 3  (cycles [20, 54, 66])
+
+  Diagnosis of near-zero prediction:
+    Battery_30 operates at 4°C (Cold_Temp_4C_CC_1A category).
+    The training set contains Batteries 27, 28, 36 as cold representatives.
+    However, train SOH_Target for cold batteries also includes zeros (from
+    zero-capacity glitch cycles), confusing the model.
+    Model collapses to predicting ~0.63% because:
+      (a) Cold-temperature features are under-represented in training.
+      (b) Corrupted SOH_Target = 0 at cycles 20, 54, 66 pulls predictions toward 0.
+      (c) The model learned that cold-battery inputs -> 0 SOH from glitch labels.
+
+------------------------------------------------------------
+7.2  Battery_38 — near-zero SOH predictions (actual SOH = [58.4, 100.0]%)
+------------------------------------------------------------
+
+  Battery_38 in final_battery_dataset.csv:
+    Cycles: 102
+    SOH range: [58.41, 100.00]%
+    SOH = 0.0 count: 0
+
+  Diagnosis of near-zero prediction:
+    Battery_38 operates at 4°C (Cold_Temp_4C_CC_2A_Extended category).
+    Its SOH values are in a normal range [58, 100]%, yet the model predicts ~0.63%.
+    Root cause: the model learned a spurious association between cold-temperature
+    input features (low ambient_temperature, altered voltage/current profile)
+    and near-zero SOH due to corrupted zero-SOH labels in cold training batteries.
+
+------------------------------------------------------------
+7.3  Feature comparison: cold test vs cold training batteries
+------------------------------------------------------------
+  Feature means comparison (cold training vs cold test batteries):
+  Feature                            Train-Cold mean      Test-Cold mean
+  ------------------------------  ------------------  ------------------
+  ambient_temperature                         4.0000              4.0000
+  discharge_duration_s                     4804.3933           3442.1287
+  voltage_measured_mean                       3.3623              3.3800
+  current_measured_mean                      -0.8146             -1.3992
+  temperature_measured_mean                   9.2248              9.3721
+
+============================================================================
+SECTION 8 — SUMMARY OF ALL IDENTIFIED ERRORS
+============================================================================
+
+  ERROR 1 — WRONG SOURCE FILE FOR STRATIFIED TENSORS  [CRITICAL]
+  ─────────────────────────────────────────────────────────────────
+  The condition-stratified split script loaded final_battery_dataset.csv
+  instead of corrected_data/corrected_final_battery_dataset.csv.
+  Consequence: all three tensor sets contain uncorrected SOH_Target values,
+  including values up to 2755% (Battery_17), 2186% (Battery_23), 1488% (Battery_21).
+  These anomalous targets dominated the multi-task loss and prevented learning.
+
+  ERROR 2 — BELOW-NOMINAL REFERENCE CAPACITY  [ROOT CAUSE OF SOH > 100%]
+  ─────────────────────────────────────────────────────────────────────────
+  The original SOH formula (Notebook 04) uses the FIRST recorded capacity as
+  the reference. For 10 batteries, this first cycle was a partial discharge,
+  producing a denominator << true nominal capacity.
+  Batteries affected: 17, 18, 19, 20, 21, 22, 23, 31, 32, 33.
+  Notebook 05B corrected this using a threshold rule (>= 1.0 Ahr),
+  but the corrected file was NOT propagated to the tensor generation step.
+
+  ERROR 3 — ZERO-CAPACITY GLITCH CYCLES NOT MASKED IN TENSORS  [SIGNIFICANT]
+  ─────────────────────────────────────────────────────────────────────────────
+  Batteries 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 have zero-capacity glitch
+  cycles (SOH_percent = 0.0). Notebook 05B marked 55 such records as NaN in the
+  corrected file. However, the uncorrected file still contains SOH = 0 at these
+  cycles, and these zeros ARE included in the train/test tensors with mask = 1
+  (counted as valid SOH targets), causing the model to learn SOH = 0 for valid cycles.
+
+  Batteries with SOH = 0 in tensors:
+    Train: 9 sequences with SOH_Target = 0  — {'Battery_28': 3, 'Battery_27': 2, 'Battery_26': 1, 'Battery_31': 1, 'Battery_32': 1, 'Battery_33': 1}
+    Val: 4 sequences with SOH_Target = 0  — {'Battery_29': 3, 'Battery_25': 1}
+    Test: 4 sequences with SOH_Target = 0  — {'Battery_30': 3, 'Battery_24': 1}
+
+  ERROR 4 — SOH SCALE MISMATCH BETWEEN TRAIN AND TEST  [SIGNIFICANT]
+  ────────────────────────────────────────────────────────────────────
+  Train SOH_Target range: [0.0, 2755.0]  (mostly > 100 for Batteries 17-23)
+  Test  SOH_Target range: [0.0, 198.9]   (all test batteries have normal SOH)
+  The model was trained on a distribution (mean ~333%) that is completely
+  different from the test distribution (mean ~86%). This explains the
+  catastrophically poor SOH R² = -1.27 even after stratified splitting.
+
+  ERROR 5 — BATTERY_19 ANOMALOUS CAPACITY SPIKE  [MINOR]
+  ────────────────────────────────────────────────────────
+  Battery_19 cycle 279 has capacity = 2.444 Ahr, far above the typical ~1.78 Ahr.
+  This single-cycle anomaly creates SOH = 244% at cycle 279.
+  Likely a measurement artifact (charging current bled into the discharge measurement).
+
+============================================================================
+SECTION 9 — RECOMMENDED CORRECTIONS
+============================================================================
+
+  CORRECTION 1 (MANDATORY): Regenerate tensors from the corrected dataset.
+    Action: Rerun the condition-stratified split script, changing the source
+            file from final_battery_dataset.csv to
+            corrected_data/corrected_final_battery_dataset.csv.
+    Expected outcome: SOH_Target range narrows from [0, 2755] to [3.3, 243.9].
+
+  CORRECTION 2 (MANDATORY): Verify corrected SOH is still bounded correctly.
+    After using the corrected file, SOH values up to ~244% remain for Battery_19.
+    These should either be:
+      (a) Clipped to 100% (physiologically motivated but information-lossy), or
+      (b) Accepted as is and the model is trained to predict capacity-relative SOH, or
+      (c) Re-normalised per battery using the max observed capacity as denominator.
+    Option (a) is the most practical for a percentage-based LSTM target.
+
+  CORRECTION 3 (MANDATORY): Handle zero-SOH glitch cycles.
+    Use mask_soh = 0 for all cycles where SOH_percent was originally zero
+    due to a failed discharge measurement. These cycles exist in batteries
+    24-33 at specific cycles. The corrected_final_battery_dataset.csv already
+    sets these to NaN — regenerating tensors from that file will fix this automatically.
+
+  CORRECTION 4 (RECOMMENDED): Investigate Battery_19 cycle-279 spike.
+    Verify whether the 2.444 Ahr reading is a sensor artifact and, if so,
+    exclude or cap that cycle.
+
+  CORRECTION 5 (INFORMATIONAL): The corrected SOH still shows values > 100%
+    for Batteries 13-16 (up to ~111%) and Batteries 17-23 (up to ~244%).
+    These arise from below-nominal reference capacities even after Nb05B correction.
+    Consider using max_observed_cap as the reference for these batteries,
+    which would force SOH_max ≈ 100% at the best observed cycle.
+
+  CORRECTION 6 (RECOMMENDED): Normalise RUL targets.
+    Training RUL range = [0, 123] cycles (corrected file),
+    but test RUL range = [0, 167] cycles (from final_battery_dataset.csv).
+    After tensor regeneration, normalise RUL by dividing by EOL_cycle to
+    produce RUL_fraction in [0, 1] — reduces scale sensitivity in loss.
+
+============================================================================
+SECTION 10 — CONCLUSION
+============================================================================
+
+  The primary cause of LSTM failure is NOT the model architecture or the
+  condition-stratified split. It is a data pipeline error:
+
+  The tensor generation script loaded the UNCORRECTED final_battery_dataset.csv
+  instead of the CORRECTED version. This introduced SOH_Target values up to 2755%
+  into training, overwhelming the multi-task loss and preventing meaningful
+  SOH learning. The corrected file (corrected_final_battery_dataset.csv) exists
+  and contains properly validated SOH values, but was bypassed.
+
+  Fixing the tensor source file is the single most impactful correction
+  and is expected to bring SOH R² from -1.27 to a positive range.
+
+  RUL performance (R² = +0.15) is relatively unaffected because RUL targets
+  are physically bounded [0, ~167 cycles] and do not suffer from the
+  reference-capacity scaling bug that distorts SOH targets.

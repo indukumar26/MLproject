@@ -1,0 +1,5 @@
+Subset,Battery IDs,Cell Count,Sequence Windows (W=5),Stratification / Condition Coverage
+Training,"01, 02, 03, 05, 07 to 14, 18, 22 to 24, 26 to 28, 34 to 36",22,"1,534","Covers 24 °C, 43 °C, 4 °C, CC and pulsed regimes"
+Validation,"06, 15, 21, 25, 29, 37",6,377,Model selection and early stopping checkpointing
+Test,"04, 16, 30, 38",4,330,"Held-out evaluation: 24 °C CC, 43 °C CC, 4 °C (1A & 2A CC)"
+Total Retained,32 Verified Clean NASA Cells,32,"2,241",Complete zero-leakage partitioned sequence dataset

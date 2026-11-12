@@ -1,0 +1,6 @@
+Pipeline Stage,Verification Check Performed,Empirical Outcome & Remediation
+Dataset Audit,"Inspect cycle counts, capacity integrity, and voltage/temp profiles","Identified 33 aborted cycles, 17 zero-capacity cycles, and 6 unphysical cells; excluded corrupted records."
+Target Validation,Compare single-cycle vs three-consecutive-cycle EOL rules,Eliminated false premature EOL labels on capacity recovery dips; corrected conditioning glitches on B36–B38.
+Split Independence Check,"Verify zero battery overlap between train, val, and test partitions",Confirmed 100% strict battery-independent splitting with 0% data leakage across thermal regimes.
+Scaler Isolation Audit,Verify StandardScaler fitted strictly on training subset sequences,Scaler saved without test leakage; identical scaling applied to val and test sets.
+CALCE Transfer Check,Evaluate frozen-backbone adaptation on held-out CS2_21,"Confirmed positive cross-domain transfer (SOH MAE 3.83%–4.18%, R² = 0.9416) using only 1.9% trainable weights."

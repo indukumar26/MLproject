@@ -1,0 +1,39 @@
+Battery_ID,Total_Cycles,EOL_Status,EOL_Sequential_Cycle,EOL_NASA_Index,SOH_at_EOL_%,Min_Observed_SOH_%
+Battery_01,168,Observed,101.0,356.0,79.74,69.35
+Battery_02,168,Observed,61.0,202.0,79.05,56.69
+Battery_03,168,Observed,124.0,445.0,79.73,74.06
+Battery_04,132,Observed,75.0,185.0,79.96,72.29
+Battery_05,28,Not Observed (Right-Censored),,,,95.71
+Battery_06,28,Observed,6.0,16.0,76.45,76.45
+Battery_07,28,Not Observed (Right-Censored),,,,97.08
+Battery_08,28,Not Observed (Right-Censored),,,,95.15
+Battery_09,28,Not Observed (Right-Censored),,,,95.71
+Battery_10,28,Observed,6.0,16.0,76.45,76.45
+Battery_11,28,Not Observed (Right-Censored),,,,97.08
+Battery_12,28,Not Observed (Right-Censored),,,,95.15
+Battery_13,40,Not Observed (Right-Censored),,,,94.97
+Battery_14,40,Not Observed (Right-Censored),,,,94.37
+Battery_15,40,Not Observed (Right-Censored),,,,100.0
+Battery_16,40,Not Observed (Right-Censored),,,,95.95
+Battery_17,197,Observed,1.0,1.0,5.89,5.89
+Battery_18,197,Observed,1.0,1.0,44.87,44.87
+Battery_19,197,Not Observed (Right-Censored),,,,100.0
+Battery_20,47,Not Observed (Right-Censored),,,,81.45
+Battery_21,47,Observed,1.0,1.0,6.82,6.82
+Battery_22,47,Observed,1.0,1.0,39.44,24.94
+Battery_23,67,Observed,1.0,1.0,4.58,4.58
+Battery_24,112,Observed,42.0,103.0,4.09,3.6
+Battery_25,112,Observed,42.0,103.0,3.33,3.3
+Battery_26,112,Observed,42.0,103.0,3.39,3.27
+Battery_27,72,Observed,4.0,9.0,79.31,56.09
+Battery_28,72,Observed,18.0,45.0,79.41,65.02
+Battery_29,72,Observed,18.0,45.0,79.15,66.06
+Battery_30,72,Observed,22.0,55.0,79.52,69.82
+Battery_31,25,Observed,1.0,1.0,60.41,48.66
+Battery_32,21,Observed,1.0,1.0,52.35,4.64
+Battery_33,25,Observed,1.0,1.0,49.76,49.76
+Battery_34,4,Observed,1.0,1.0,60.68,60.68
+Battery_35,56,Not Observed (Right-Censored),,,,91.68
+Battery_36,103,Observed,1.0,1.0,63.43,63.43
+Battery_37,102,Observed,1.0,1.0,60.53,60.53
+Battery_38,102,Observed,1.0,1.0,58.41,58.41

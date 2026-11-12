@@ -1,0 +1,27 @@
+feature_name,description,unit_of_measurement,data_type,source_csv,measurement_category
+battery_id,Unique identifier for the tested battery cell,Dimensionless (Categorical ID),string / object,All CSVs,Identifier / Metadata
+cycle_index,1-based sequential chronological operation cycle index for the battery,Count (Integer),int64,All CSVs,Temporal / Sequence
+ambient_temperature,Chamber / environmental ambient temperature during the test operation,°C (degrees Celsius),float64,All CSVs,Environmental / Thermal
+cycle_start_time,"Absolute timestamp of cycle start, converted from MATLAB date vector",ISO 8601 Datetime (YYYY-MM-DDTHH:MM:SS.ffffff),datetime64 / string,All CSVs,Temporal / Timestamp
+relative_time_s,Elapsed duration from start of current operational cycle,s (seconds),float64,"charge.csv, discharge.csv",Temporal
+voltage_measured,Terminal voltage measured across battery electrodes during operation,V (Volts),float64,"charge.csv, discharge.csv",Electrical / State
+current_measured,Net battery current measured during charge or discharge (negative during discharge or charger transitions),A (Amperes),float64,"charge.csv, discharge.csv",Electrical / State
+temperature_measured,Battery surface temperature measured by thermocouple sensor,°C (degrees Celsius),float64,"charge.csv, discharge.csv",Thermal
+current_charge,Charging current supplied by charger circuit (CC-CV mode),A (Amperes),float64,charge.csv,Electrical / Charging Equipment
+voltage_charge,Terminal voltage output from charging equipment circuit,V (Volts),float64,charge.csv,Electrical / Charging Equipment
+current_load,Discharge load current drawn by electronic load bank,A (Amperes),float64,discharge.csv,Electrical / Load Equipment
+voltage_load,Terminal voltage measured at electronic load terminals,V (Volts),float64,discharge.csv,Electrical / Load Equipment
+capacity,Integrated discharge capacity from full charge until cutoff voltage,Ahr (Ampere-hours),float64,"discharge.csv, cycles_index.csv",Degradation / Capacity
+Re,Estimated electrolyte resistance derived from EIS impedance fitting,Ω (Ohms),float64,"impedance.csv, cycles_index.csv",EIS / Internal Resistance
+Rct,Estimated charge transfer resistance derived from EIS impedance fitting,Ω (Ohms),float64,"impedance.csv, cycles_index.csv",EIS / Internal Resistance
+point_index,"Frequency point index during EIS sweep (typically 1 to 48, 0.1Hz to 5kHz)",Index (Integer),int64,impedance_spectrum.csv,EIS Spectroscopy
+battery_impedance_real,Real component of complex battery impedance Z'(ω),Ω (Ohms),float64,impedance_spectrum.csv,EIS Spectroscopy
+battery_impedance_imag,Imaginary component of complex battery impedance Z''(ω),Ω (Ohms),float64,impedance_spectrum.csv,EIS Spectroscopy
+battery_current_real,Real component of AC excitation current at battery,A (Amperes),float64,impedance_spectrum.csv,EIS Spectroscopy
+battery_current_imag,Imaginary component of AC excitation current at battery,A (Amperes),float64,impedance_spectrum.csv,EIS Spectroscopy
+sense_current_real,Real component of current measured across sense resistor,A (Amperes),float64,impedance_spectrum.csv,EIS Spectroscopy
+sense_current_imag,Imaginary component of current measured across sense resistor,A (Amperes),float64,impedance_spectrum.csv,EIS Spectroscopy
+current_ratio_real,Real component of current transfer ratio,Dimensionless,float64,impedance_spectrum.csv,EIS Spectroscopy
+current_ratio_imag,Imaginary component of current transfer ratio,Dimensionless,float64,impedance_spectrum.csv,EIS Spectroscopy
+rectified_impedance_real,Real component of rectified / corrected complex impedance,Ω (Ohms),float64,impedance_spectrum.csv,EIS Spectroscopy
+rectified_impedance_imag,Imaginary component of rectified / corrected complex impedance,Ω (Ohms),float64,impedance_spectrum.csv,EIS Spectroscopy

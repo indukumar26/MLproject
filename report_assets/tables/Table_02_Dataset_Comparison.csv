@@ -1,0 +1,9 @@
+Property,NASA PCoE (Source),CALCE CS2 (Target)
+Cell format,Cylindrical 18650,Prismatic CS2 cells
+Cells,"38 raw, 32 retained","7 cells (CS2_35 to 38 train/val, CS2_21 held-out test)"
+Nominal capacity,2.0 to 2.1 Ah,~1.10 Ah
+Chemistry,LiCoO₂ cathode,LiCoO₂ cathode
+Discharge protocols,"Fixed CC (1A, 2A, 4A) & pulsed discharge",Standard CCCV constant current discharge
+Thermal conditions,"Diverse thermal regimes (4 °C, 24 °C, 43 °C)",Room temperature (~25 °C)
+Cycle count,"2,369 quality-filtered discharge cycles","6,715 valid discharge cycles"
+Role in project,Source domain for multi-task LSTM pretraining,Target domain for frozen-backbone transfer learning

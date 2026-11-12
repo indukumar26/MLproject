@@ -1,0 +1,8 @@
+#,Layer Name,Configuration & Activation,Output Tensor Shape
+1,Input Layer,Sliding window of 5 consecutive cycles × 14 normalized features,"(batch, 5, 14)"
+2,LSTM Layer 1,"128 hidden units, batch-first, returns full sequence","(batch, 5, 128)"
+3,Dropout,Dropout regularization probability p = 0.20,"(batch, 5, 128)"
+4,LSTM Layer 2,"64 hidden units, batch-first, extracts final hidden state h_T","(batch, 64)"
+5,Shared Dense,32 neurons with ReLU non-linear activation,"(batch, 32)"
+6,SOH Regression Head,Linear projection (32 → 1) with Identity activation,"(batch, 1) [SOH %]"
+7,RUL Regression Head,Linear projection (32 → 1) with Identity activation,"(batch, 1) [RUL cyc]"

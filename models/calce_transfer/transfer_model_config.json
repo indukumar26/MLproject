@@ -1,0 +1,36 @@
+{
+  "model_name": "TransferMultiOutputLSTM",
+  "strategy": "InputAdapter (11\u219213) + Frozen LSTM Core + Fine-tuned Heads",
+  "pretrained_on": "NASA PCoE Quality-Filtered Dataset (32 batteries)",
+  "fine_tuned_on": "CALCE CS2 Dataset (7 batteries)",
+  "frozen_layers": [
+    "lstm1",
+    "lstm2"
+  ],
+  "fine_tuned_layers": [
+    "input_adapter",
+    "shared_dense",
+    "soh_head",
+    "rul_head"
+  ],
+  "frozen_params": 123392,
+  "trainable_params": 2328,
+  "calce_features": 11,
+  "nasa_features": 14,
+  "sequence_length": 5,
+  "training": {
+    "best_epoch": 150,
+    "best_val_loss": 0.360858,
+    "learning_rate": 0.0001,
+    "batch_size": 32,
+    "w_soh": 0.0029155652551248615,
+    "w_rul": 0.004778267979932091
+  },
+  "test_metrics": {
+    "SOH_MAE_%": 4.1789,
+    "SOH_RMSE_%": 6.7115,
+    "SOH_R2": 0.1782,
+    "RUL_MAE_cycles": 5.0164,
+    "RUL_note": "CS2_21 reached EOL at cycle 16; only 11 valid RUL sequences in test set"
+  }
+}

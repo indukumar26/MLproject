@@ -1,0 +1,9 @@
+Technical Term,Concise Engineering Explanation
+Right-Censoring,"A cell whose test was terminated prior to reaching 80% EOL; true failure cycle is unobserved, requiring RUL loss masking."
+Sliding Window,A temporal sequence of W=5 consecutive cycles capturing dynamic degradation rates and degradation momentum.
+Domain Shift,The statistical and physical divergence between source (NASA 18650) and target (CALCE prismatic) feature distributions.
+Input Adapter,A trainable linear projection layer mapping 11 CALCE input features to the 14-dimensional NASA feature space.
+Frozen Backbone,Freezing pretrained LSTM layers to preserve learned general temporal dynamics while fine-tuning lightweight adapters.
+Three-Cycle EOL Rule,Declaring EOL only after three consecutive cycles below 80% C_ref to filter out transient capacity recovery spikes.
+Conditioning Glitch,A partial initial formation/conditioning cycle with unphysically low capacity that distorts reference baseline calculation.
+Causal Masking,Zeroing loss gradients for sensor trip cycles (0.0 Ah) or unobserved RUL targets to prevent model corruption.

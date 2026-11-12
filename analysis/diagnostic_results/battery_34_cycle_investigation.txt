@@ -1,0 +1,22 @@
+========================================================================================
+REPORT 6: BATTERY_34 DISCREPANCY & INTEGRITY INVESTIGATION
+========================================================================================
+
+1. THE DISCREPANCY:
+- Earlier EDA reports mentioned '25 cycles' for Battery_34.
+- The filtered dataset contains only 4 cycles.
+
+2. ROOT CAUSE IN RAW CONVERTED DATA:
+Inspection of `converted_data/Battery_34/discharge.csv` reveals:
+- Total cycle indices recorded: 25 (indices [1, 5, 7, 9, 11, 15, ..., 59]).
+- Cycles 1, 5, 7, 9 (4 cycles): Genuine discharge cycles with mean discharge current -1.6A
+  and durations > 1700s. Cumulative capacity column is fully populated (0.86 to 1.42 Ah).
+- Cycles 11 through 59 (21 cycles): Current was exactly 0.001A (open circuit / disconnected cell),
+  voltage collapsed to 0.22 - 0.32V, and capacity is 100% NaN!
+- When Notebook 03/05 performed preprocessing, cycles with NaN capacity were dropped.
+- Therefore, Battery_34 NEVER had 25 valid discharge cycles. It had exactly 4 operational cycles!
+
+3. IMPACT ON LSTM SEQUENCES:
+- Window length W = 5 requires at least 5 consecutive cycles.
+- Since Battery_34 has only 4 cycles, it generates ZERO sequences for W=5, W=10, and W=15.
+- It is present in the tabular CSV but omitted from training tensors without error.

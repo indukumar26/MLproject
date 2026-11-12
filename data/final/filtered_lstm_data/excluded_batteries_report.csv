@@ -1,0 +1,7 @@
+Battery_ID,Exclusion_Reason,Total_Cycles,C_ref_Ahr,Reference_Cycle,Max_Capacity_Ahr,Max_SOH_percent
+Battery_17,"Partial reference capacity at cycle 1 (ref=1.161 Ah, max=1.885 Ah, SOH reaches 162.33%)",197,1.161085,3,1.88514,162.360246
+Battery_19,"Conditioning-cycle reference error and severe capacity spikes (ref=1.002 Ah, spike to 2.444 Ah at cycle 279, SOH reaches 243.92%)",197,1.001983,1,2.444062,243.922645
+Battery_20,"Partial reference capacity at cycle 1 (ref=1.103 Ah, max=1.786 Ah, SOH reaches 161.94%)",47,1.102624,2,1.786441,162.017311
+Battery_31,"Abnormal capacity measurements exceeding physical cell rating of 2.0 Ah (ref=1.421 Ah, max=2.379 Ah, SOH reaches 167.45%)",25,1.420906,2,2.378644,167.403347
+Battery_32,"Erratic capacity glitches and impossible measurements (max=2.640 Ah, extreme jumps, SOH reaches 169.57%)",25,1.64879,2,2.640149,160.126501
+Battery_33,"Abnormal capacity measurements exceeding physical cell rating of 2.0 Ah (ref=1.293 Ah, max=2.330 Ah, SOH reaches 180.20%)",25,1.29318,2,2.330873,180.243481

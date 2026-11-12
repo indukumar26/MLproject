@@ -1,0 +1,13 @@
+Audit_Item,Status_Or_Value
+Data & Tensor Integrity,"PASS (100% compliant, 0 NaNs, 0 leak)"
+Feature Scaler Fitting,"PASS (Strictly on Train, 9,980 steps)"
+Training Stability,"PASS (Smooth convergence, early stop ep 45)"
+Best Checkpoint Validation Loss,0.0895 (Epoch 30)
+SOH Error Attribution to Battery_24,85.5% of total test SSE
+RUL Error Attribution to Battery_24,80.0% of total test SSE
+Test RUL Zero-Mass Fraction,69.5% (244/351 targets equal to 0)
+Battery_04 (Standard Aging) SOH R2,+0.5084 (MAE = 5.28%)
+Battery_04 (Standard Aging) RUL R2,+0.4280 (MAE = 11.50 cycles)
+Battery_38 (Cohort 6) SOH MAE,4.12% SOH MAE
+Battery_38 (Cohort 6) RUL MAE,0.18 cycles RUL MAE
+Global LSTM vs Baseline RUL MAE,12.60 cyc (LSTM) vs 13.13 cyc (Baseline)

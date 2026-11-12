@@ -1,0 +1,33 @@
+{
+  "model_name": "MultiOutputLSTM",
+  "dataset_version": "NASA PCoE Standard Benchmark Cohort + Corrected Pre-EOL Targets",
+  "architecture": {
+    "input_size": 14,
+    "hidden_dim1": 128,
+    "hidden_dim2": 64,
+    "dense_dim": 32,
+    "dropout": 0.2
+  },
+  "features": [
+    "Cycle_Number",
+    "discharge_duration_s",
+    "voltage_measured_mean",
+    "voltage_measured_min",
+    "voltage_measured_max",
+    "voltage_measured_std",
+    "current_measured_mean",
+    "current_measured_min",
+    "temperature_measured_mean",
+    "temperature_measured_max",
+    "temperature_measured_min",
+    "voltage_load_mean",
+    "current_load_mean",
+    "cumulative_ah"
+  ],
+  "metrics_benchmark_b04": {
+    "SOH_MAE_%": 4.0114,
+    "SOH_R2": 0.7176,
+    "RUL_MAE_cycles": 10.6588,
+    "RUL_R2": 0.5823
+  }
+}

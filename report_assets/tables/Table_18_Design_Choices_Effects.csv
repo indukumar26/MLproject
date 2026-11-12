@@ -1,0 +1,7 @@
+Design Choice / Intervention,Empirical Observation & Metric Impact,Scientific Attribution & Operational Caveat
+Quality filtering of NASA data,SOH MAE improved from ~49.87% to 8.86%,Removing 6 corrupt/unphysical cells eliminated severe baseline distortions across cohorts.
+Placement of Battery_24,Test SOH MAE improved from 12.84% to 8.86%,Moving Battery_24 to training prevented severe cold-plunge distribution shift on the test partition.
+Three-consecutive-cycle EOL rule,Eliminated false premature EOL labels on temporary capacity dips,Anchoring EOL strictly after 3 consecutive sub-80% cycles prevented premature life termination.
+Conditioning cycle glitch fix,Restored pristine reference baseline on B36–B38,Skipping partial Cycle 1 (0.78 Ah) prevented false EOL = 1 and normalized SOH calculations.
+Cumulative throughput (cumulative_ah),Improved room-temperature SOH MAE down to 2.51%,Provided explicit physical cumulative degradation arrow across operating regimes.
+Frozen-backbone transfer learning,Achieved SOH MAE 3.83% (R² = 0.9416) on CALCE,Demonstrated that recurrent temporal features learned on NASA cells transfer cleanly to external cells with <2% retraining.

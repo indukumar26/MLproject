@@ -1,0 +1,106 @@
+{
+  "split_strategy": "Condition-Stratified Battery-Wise",
+  "sequence_length": 5,
+  "number_of_features": 13,
+  "feature_names": [
+    "ambient_temperature",
+    "discharge_duration_s",
+    "voltage_measured_mean",
+    "voltage_measured_min",
+    "voltage_measured_max",
+    "voltage_measured_std",
+    "current_measured_mean",
+    "current_measured_min",
+    "temperature_measured_mean",
+    "temperature_measured_max",
+    "temperature_measured_min",
+    "voltage_load_mean",
+    "current_load_mean"
+  ],
+  "target_names": [
+    "SOH_percent",
+    "RUL_cycles"
+  ],
+  "random_seed": 42,
+  "total_batteries": 38,
+  "train_batteries": [
+    "Battery_01",
+    "Battery_02",
+    "Battery_03",
+    "Battery_05",
+    "Battery_07",
+    "Battery_08",
+    "Battery_09",
+    "Battery_10",
+    "Battery_11",
+    "Battery_12",
+    "Battery_13",
+    "Battery_14",
+    "Battery_17",
+    "Battery_18",
+    "Battery_19",
+    "Battery_22",
+    "Battery_23",
+    "Battery_26",
+    "Battery_27",
+    "Battery_28",
+    "Battery_31",
+    "Battery_32",
+    "Battery_33",
+    "Battery_34",
+    "Battery_35",
+    "Battery_36"
+  ],
+  "validation_batteries": [
+    "Battery_06",
+    "Battery_15",
+    "Battery_21",
+    "Battery_25",
+    "Battery_29",
+    "Battery_37"
+  ],
+  "test_batteries": [
+    "Battery_04",
+    "Battery_16",
+    "Battery_20",
+    "Battery_24",
+    "Battery_30",
+    "Battery_38"
+  ],
+  "train_battery_count": 26,
+  "validation_battery_count": 6,
+  "test_battery_count": 6,
+  "train_cycles": 1975,
+  "val_cycles": 401,
+  "test_cycles": 505,
+  "train_shape": [
+    1871,
+    5,
+    13
+  ],
+  "val_shape": [
+    377,
+    5,
+    13
+  ],
+  "test_shape": [
+    481,
+    5,
+    13
+  ],
+  "condition_categories": [
+    "Normal_Temp_24C_CC_2A",
+    "Normal_Temp_24C_Pulsed_4A",
+    "Elevated_Temp_43C_CC_4A",
+    "Normal_Temp_24C_Extended_CC",
+    "Variable_Temp_24C_to_44C_MultiRate",
+    "Variable_Temp_22C_to_4C_Cold_Plunge",
+    "Cold_Temp_4C_CC_1A",
+    "Cold_Temp_4C_CC_2A_Short",
+    "Cold_Temp_4C_CC_2A_Extended",
+    "Cold_Temp_4C_MultiRate_Single"
+  ],
+  "battery_24_assignment": "Test",
+  "battery_24_training_representative": "Battery_26",
+  "battery_24_validation_representative": "Battery_25"
+}

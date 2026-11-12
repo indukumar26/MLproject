@@ -1,0 +1,11 @@
+File / Path,Description & Stage Role
+data/raw/,Directory of 76 raw NASA .mat experimental test files
+data/intermediate/converted_data/,"Flattened per-cycle charge, discharge, and impedance CSVs"
+data/intermediate/final_dataset/merged_battery_data.csv,Merged 14-feature cycle data across 38 cells before quality audit
+data/final/corrected_data/corrected_final_battery_dataset.csv,Cleaned 32-cell dataset with corrected reference capacities and EOL cycles
+data/final/filtered_lstm_data/train_tensors.pt,"PyTorch sliding-window tensors (W=5, F=14) for 22 training cells"
+data/final/filtered_lstm_data/val_tensors.pt,PyTorch sliding-window tensors for 6 validation cells
+data/final/filtered_lstm_data/test_tensors.pt,PyTorch sliding-window tensors for 4 held-out test cells
+models/nasa_lstm/feature_scaler.pkl,StandardScaler fitted strictly on training sequences (0% test leakage)
+models/nasa_lstm/best_multi_output_lstm.pth,Trained weights of the multi-task LSTM backbone and dual heads
+models/calce_transfer/best_transfer_lstm.pth,Adapted weights of the input adapter and fine-tuned heads for CALCE

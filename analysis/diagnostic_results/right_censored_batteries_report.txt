@@ -1,0 +1,36 @@
+========================================================================================
+REPORT 2: RIGHT-CENSORED BATTERIES DIAGNOSTIC ANALYSIS
+========================================================================================
+
+SUMMARY OF RIGHT-CENSORED BATTERIES:
+- Naive Right-Censored Batteries in Current Dataset (11 batteries):
+  ['Battery_05', 'Battery_07', 'Battery_08', 'Battery_09', 'Battery_11', 'Battery_12', 'Battery_13', 'Battery_14', 'Battery_15', 'Battery_16', 'Battery_35']
+- True Right-Censored Batteries in Reality (13 batteries):
+  ['Battery_05', 'Battery_07', 'Battery_08', 'Battery_09', 'Battery_11', 'Battery_12', 'Battery_13', 'Battery_14', 'Battery_15', 'Battery_16', 'Battery_34', 'Battery_35', 'Battery_38']
+
+CRITICAL INSIGHT ON HIDDEN RIGHT-CENSORED BATTERIES:
+Battery_34 and Battery_38 were misclassified as 'Observed EOL at Cycle 1' due to their
+initial conditioning discharge. In reality, after establishing their nominal baseline,
+Battery_34 stayed at 95.3% SOH and Battery_38 degraded to 84.0% SOH. Neither ever reached 80%!
+Therefore, Battery_34 and Battery_38 are GENUINELY RIGHT-CENSORED.
+
+RUL ASSIGNMENT RULE VERIFICATION:
+1. Exact RUL is UNKNOWN for right-censored batteries. We CANNOT set RUL = 0 at the last cycle!
+2. Current tensors correctly assign mask_rul = 0.0 and y_rul = -1.0 to all naive right-censored batteries.
+3. However, Battery_38 (in Test set) currently has mask_rul = 1.0 and y_rul = 0.0 everywhere, corrupting
+   test set RUL evaluation unless masked or corrected!
+
+Battery_ID      Split  Total_Recorded_Cycles  Last_Observed_SOH_%  Min_Observed_SOH_%   Naive_Status    True_Status
+Battery_05      Train                     28                95.71               95.71 Right-Censored Right-Censored
+Battery_07      Train                     28                97.08               97.08 Right-Censored Right-Censored
+Battery_08      Train                     28                95.15               95.15 Right-Censored Right-Censored
+Battery_09      Train                     28                95.71               95.71 Right-Censored Right-Censored
+Battery_11      Train                     28                97.08               97.08 Right-Censored Right-Censored
+Battery_12      Train                     28                95.15               95.15 Right-Censored Right-Censored
+Battery_13      Train                     40                94.97               94.97 Right-Censored Right-Censored
+Battery_14      Train                     40                94.37               94.37 Right-Censored Right-Censored
+Battery_15 Validation                     40               100.04              100.00 Right-Censored Right-Censored
+Battery_16       Test                     40                95.95               95.95 Right-Censored Right-Censored
+Battery_34      Train                      4                95.29               60.68       Observed Right-Censored
+Battery_35      Train                     56                94.49               91.67 Right-Censored Right-Censored
+Battery_38       Test                    102                83.99               58.41       Observed Right-Censored

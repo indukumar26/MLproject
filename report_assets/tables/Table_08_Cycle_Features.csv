@@ -1,0 +1,15 @@
+#,Feature Identifier,Physical Description & Unit
+1,Cycle_Number,Chronological discharge cycle count
+2,discharge_duration_s,Length of discharge cycle until cutoff voltage (seconds)
+3,voltage_measured_mean,Mean terminal voltage during discharge draw (V)
+4,voltage_measured_min,Minimum cutoff voltage reached at end of discharge (V)
+5,voltage_measured_max,Initial open-circuit terminal voltage (V)
+6,voltage_measured_std,Voltage curve dispersion across the cycle (V)
+7,current_measured_mean,Average discharge current draw (A)
+8,current_measured_min,Peak discharge current magnitude (A)
+9,temperature_measured_mean,Mean internal cell temperature during discharge (°C)
+10,temperature_measured_max,Maximum thermal rise reached at cycle termination (°C)
+11,temperature_measured_min,Baseline starting cell temperature (°C)
+12,voltage_load_mean,Mean external load voltage under load (V)
+13,current_load_mean,Mean external load current drawn by load (A)
+14,cumulative_ah,Running integral of delivered Ampere-hour throughput (∑ Ah)

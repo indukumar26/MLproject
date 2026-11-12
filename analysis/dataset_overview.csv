@@ -1,0 +1,12 @@
+Metric,Value,Details
+Total Number of Batteries,34,34 battery datasets from 5 NASA aging experiment profiles
+Total Operational Cycles,"6,991","Sum of charge, discharge, and impedance cycles across all 34 batteries"
+Total Charge Time-Series Records,"6,044,602",High-resolution time-series in charge.csv
+Total Discharge Time-Series Records,"756,343",High-resolution time-series in discharge.csv
+Total Impedance Fitting Records,"1,870",Re and Rct estimates in impedance.csv
+Total Impedance Spectrum Records,"89,760",Frequency sweep spectral points in impedance_spectrum.csv
+Grand Total Measurement Records,"6,892,575",Combined across all tables and operations
+Duplicate Records in Charge,0,Zero duplicate rows detected
+Duplicate Records in Discharge,0,Zero duplicate rows detected
+Duplicate Records in Impedance,0,Zero duplicate rows detected
+Duplicate Records in Spectrum,0,Zero duplicate rows detected

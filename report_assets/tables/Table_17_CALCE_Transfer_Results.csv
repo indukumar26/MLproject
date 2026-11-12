@@ -1,0 +1,8 @@
+Transfer Evaluation Metric,Achieved Value,Operational Notes & Scientific Significance
+Test SOH MAE,3.83% – 4.18%,High prognostic accuracy on unseen prismatic lithium-ion chemistry
+Test SOH RMSE,4.54% – 6.71%,Low variance and tight error dispersion across 780 cycles
+Test SOH R² Score,+0.9416,Excellent correlation with true physical capacity degradation trajectory
+Test RUL MAE,5.02 cycles,Accurate remaining cycle life prediction prior to 80% EOL
+Test RUL RMSE,5.18 cycles,Bounded lifetime error across aging trajectory
+Frozen Parameters,"123,392 (98.1%)",LSTM Layer 1 and Layer 2 weights locked to retain pretrained temporal dynamics
+Trainable Parameters,"2,328 – 2,381 (1.9%)","InputAdapter (11 → 14), SharedDense (32), and dual regression heads"

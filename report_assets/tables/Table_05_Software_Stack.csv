@@ -1,0 +1,9 @@
+Tool,Version / Environment,Role in Project
+Python,3.12 (64-bit),Core programming language for entire research pipeline
+PyTorch,2.5+ (CUDA enabled),"Definition, GPU training, and checkpointing of multi-task LSTM"
+pandas,2.2+,"Ingestion, tabular cleaning, grouping, and target validation"
+NumPy,1.26+,"Sliding-window sequence transformation, array operations"
+scikit-learn,1.5+,"Isolated StandardScaler fitting, regression metric computation"
+Matplotlib,3.9+,Generation of publication-grade diagnostic and prognostic plots
+Seaborn,0.13+,"Statistical distribution plots, parity scatter visualizations"
+Joblib,1.4+,Serialization and persistence of fitted feature scalers

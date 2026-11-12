@@ -1,0 +1,21 @@
+Term,Meaning
+BMS,"Battery Management System, the electronics that monitor and control a battery pack"
+CALCE,"Center for Advanced Life Cycle Engineering, University of Maryland"
+CC,Constant-current discharge
+CS2,Family of prismatic cells cycled by CALCE and used here as the target domain
+EOL,"End of Life, the cycle at which usable capacity has fallen to 80% of reference capacity"
+GPR,Gaussian Process Regression
+LAM,Loss of Active Material in an electrode
+LSTM,"Long Short-Term Memory network, a gated recurrent neural network"
+MAE,Mean Absolute Error
+MSE,Mean Squared Error
+MTL,"Multi-task learning, training one model on several related outputs"
+NASA PCoE,"NASA Ames Prognostics Center of Excellence, source of the NASA battery data"
+R²,Coefficient of determination
+RMSE,Root Mean Squared Error
+RNN,Recurrent Neural Network
+RUL,"Remaining Useful Life, the number of cycles left before EOL"
+SEI,"Solid Electrolyte Interphase, a passivation film that grows on the anode"
+SOH,"State of Health, present capacity as a percentage of pristine reference capacity"
+SVR,Support Vector Regression
+TL,Transfer Learning

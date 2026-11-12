@@ -1,0 +1,8 @@
+Cohort,Batteries,Ambient Temperature,Discharge Condition,Cells
+1,Battery_01 to 04,24 °C (Room Temp),"2.0 A CC, cut-off varies (2.7V, 2.5V, 2.2V)",4
+2,Battery_05 to 08,24 °C (Room Temp),"4.0 A peak, pulsed discharge",4
+3,Battery_09 to 26,"Mixed (24 °C, 43 °C, 22 °C → 4 °C plunge)","Mixed stress, multi-rate, and cold plunge",18
+4,Battery_27 to 30,4 °C (Cold Chamber),1.0 A CC,4
+5,Battery_31 to 34,4 °C (Cold Chamber),2.0 A CC,4
+6,Battery_35 to 38,4 °C (Extended Cold),2.0 A CC,4
+Total,Raw Collection,Diverse thermal regimes,Multi-regime cycling,38
